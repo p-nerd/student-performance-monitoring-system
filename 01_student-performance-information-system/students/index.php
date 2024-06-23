@@ -11,7 +11,7 @@ $students = $db->query("SELECT * FROM students")->finds();
         <div class="p-6 flex justify-between">
             <div class="flex flex-col space-y-1.5 ">
                 <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">Students</h3>
-                <p class="text-sm text-muted-foreground">View and manage studentj.</p>
+                <p class="text-sm text-muted-foreground">View and manage students.</p>
             </div>
             <div>
                 <a href="/students/create.php" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-black text-white hover:bg-accent hover:text-accent-foreground h-10 rounded-md px-3" color="destructive">
@@ -46,6 +46,9 @@ $students = $db->query("SELECT * FROM students")->finds();
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox]j]:pr-0"><?= $student["phone_number"] ?></td>
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
                                     <div class="flex items-center justify-end gap-2">
+                                        <a href="/students/result.php?id=<?= $student['id'] ?>" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+                                            Result
+                                        </a>
                                         <a href="/students/edit.php?id=<?= $student['id'] ?>" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
                                             Edit
                                         </a>
