@@ -4,6 +4,7 @@ require __DIR__ . "/../vendor/autoload.php";
 
 use Core\DB;
 use Core\Error;
+use Core\Old;
 
 $db = new DB(
     [
@@ -31,3 +32,4 @@ function dd($value): void
 }
 
 $error = fn (string $key) =>  Error::field($key);
+$old = fn (string $key) =>  Old::field($key);

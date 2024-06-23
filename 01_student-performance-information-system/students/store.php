@@ -3,6 +3,7 @@
 require_once "../boot.php";
 
 use Core\Error;
+use Core\Old;
 use Core\Validate;
 
 $errors = [];
@@ -31,6 +32,7 @@ if ($student) {
 }
 
 if (!empty($errors)) {
+    Old::set($_POST);
     Error::set("validation error", $errors);
     redirect("/students/create.php");
 }
