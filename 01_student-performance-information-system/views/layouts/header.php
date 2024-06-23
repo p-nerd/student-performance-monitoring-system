@@ -14,4 +14,4 @@ require_once "../boot.php";
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="max-w-xl mx-auto min-h-screen flex flex-col justify-center items-center">
+<body class="container mx-auto min-h-screen flex flex-col justify-center items-center">
