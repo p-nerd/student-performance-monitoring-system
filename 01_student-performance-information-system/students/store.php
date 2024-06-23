@@ -2,7 +2,7 @@
 
 require_once "../boot.php";
 
-use App\Error;
+use Core\Error;
 
 $errors = [];
 
@@ -21,7 +21,6 @@ if (!empty($errors)) {
     Error::set("validation error", $errors);
     redirect("/students/create.php");
 }
-
 
 $db->query('INSERT INTO students(first_name, last_name, email, phone_number) VALUES(:first_name, :last_name, :email, :phone_number)', [
     "first_name" => $first_name,

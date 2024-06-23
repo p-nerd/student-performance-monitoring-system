@@ -2,7 +2,7 @@
 
 require __DIR__ . "/../vendor/autoload.php";
 
-use App\DB;
+use Core\DB;
 
 $db = new DB(
     [
@@ -28,3 +28,5 @@ function dd($value): void
     echo "</pre>";
     die();
 }
+
+$error = fn (string $key) =>  \App\Error::field($key);
