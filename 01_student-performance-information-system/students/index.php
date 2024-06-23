@@ -5,7 +5,7 @@ $students = $db->query("SELECT * FROM students")->finds();
 
 ?>
 
-<div class="w-full max-w-4xl mx-auto">
+<div class="w-full max-w-4xl pt-10 mx-auto">
     <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
 
         <div class="p-6 flex justify-between">
