@@ -29,7 +29,7 @@ if (!$phone_number) {
 }
 
 $student = $db->query("SELECT * FROM students WHERE email=:email", ["email" => $email])->find();
-if ($student["id"] !== (int)$id) {
+if ($student && $student["id"] !== (int)$id) {
     $errors["email"] = "The email already exists";
 }
 
