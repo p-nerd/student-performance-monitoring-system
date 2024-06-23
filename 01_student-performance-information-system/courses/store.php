@@ -1,6 +1,6 @@
 <?php
 
-require_once "../boot.php";
+require __DIR__ . "/../boot.php";
 
 use Core\Error;
 use Core\Old;
@@ -39,4 +39,4 @@ $db->query('INSERT INTO courses(name, credit, mark) VALUES(:name, :credit, :mark
     "mark" => $mark,
 ]);
 
-redirect("/courses/index.php");
+redirect("/courses");

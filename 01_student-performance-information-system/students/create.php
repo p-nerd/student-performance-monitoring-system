@@ -1,5 +1,5 @@
 <?php
-require_once "../views/layouts/header.php";
+require __DIR__ . "/../views/layouts/header.php";
 ?>
 <div class="rounded-lg border bg-card text-card-foreground shadow-sm w-full max-w-md" data-v0-t="card">
     <div class="flex flex-col space-y-1.5 p-6">
@@ -45,5 +45,5 @@ require_once "../views/layouts/header.php";
 </div>
 
 <?php
-require_once "../views/layouts/footer.php";
+require __DIR__ . "/../views/layouts/footer.php";
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-require_once "../views/layouts/header.php";
+require __DIR__ . "/../views/layouts/header.php";
 
 $id = $_REQUEST["id"];
 
@@ -50,5 +50,5 @@ $student = $db->query("SELECT * FROM students WHERE id=:id", ["id" => $id])->fin
 </div>
 
 <?php
-require_once "../views/layouts/footer.php";
+require __DIR__ . "/../views/layouts/footer.php";
 ?>

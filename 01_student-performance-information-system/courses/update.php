@@ -1,6 +1,6 @@
 <?php
 
-require_once "../boot.php";
+require __DIR__ . "/../boot.php";
 
 use Core\Error;
 use Core\Old;
@@ -42,4 +42,4 @@ $db->query('UPDATE courses SET name=:name, credit=:credit, semester=:semester, m
     "mark" => $mark,
 ]);
 
-redirect("/courses/index.php");
+redirect("/courses");

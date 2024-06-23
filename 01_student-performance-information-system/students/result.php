@@ -1,5 +1,5 @@
 <?
-require_once "../views/layouts/header.php";
+require __DIR__ . "/../views/layouts/header.php";
 
 $id = $_REQUEST["id"];
 
@@ -60,5 +60,5 @@ foreach ($courses as $course) {
     <?php endforeach ?>
 </div>
 <?
-require_once "../views/layouts/footer.php";
+require __DIR__ . "/../views/layouts/footer.php";
 ?>

@@ -1,5 +1,5 @@
 <?php
-require_once "../views/layouts/header.php";
+require __DIR__ . "/../views/layouts/header.php";
 
 $courses = $db->query("SELECT * FROM courses")->finds();
 
@@ -68,5 +68,5 @@ $courses = $db->query("SELECT * FROM courses")->finds();
 </div>
 
 <?php
-require_once "../views/layouts/footer.php";
+require __DIR__ . "/../views/layouts/footer.php";
 ?>

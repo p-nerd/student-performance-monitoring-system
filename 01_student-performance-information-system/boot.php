@@ -2,4 +2,4 @@
 
 session_start();
 
-require_once "core/helper.php";
+require __DIR__ . "/core/helper.php";

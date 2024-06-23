@@ -1,6 +1,6 @@
 <?php
 
-require_once "../boot.php";
+require __DIR__ . "/../boot.php";
 
 use Core\Error;
 use Core\Old;
@@ -47,4 +47,4 @@ $db->query('UPDATE students SET first_name=:first_name, last_name=:last_name, em
     "phone_number" => $phone_number,
 ]);
 
-redirect("/students/index.php");
+redirect("/students");
