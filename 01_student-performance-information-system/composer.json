@@ -1,0 +1,16 @@
+{
+    "name": "shihab/01_student-performance-information-system",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Shihab Mahamud",
+            "email": "67628903+p-nerd@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
