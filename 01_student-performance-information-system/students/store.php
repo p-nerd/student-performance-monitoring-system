@@ -3,16 +3,29 @@
 require_once "../boot.php";
 
 use Core\Error;
+use Core\Validate;
 
 $errors = [];
 
-$first_name = $_POST["first_name"];
-$last_name = $_POST["last_name"];
-$email = $_POST["email"];
-$phone_number = $_POST["phone_number"];
+$first_name = Validate::string($_POST["first_name"]);
+$last_name = Validate::string($_POST["last_name"]);
+$email = Validate::email($_POST["email"]);
+$phone_number = Validate::phoneNumber($_POST["phone_number"]);
+
+if (!$first_name) {
+    $errors["first_name"] = "The first name is required";
+}
+if (!$last_name) {
+    $errors["last_name"] = "The last name is required";
+}
+if (!$email) {
+    $errors["email"] = "The email have to be valid";
+}
+if (!$phone_number) {
+    $errors["phone_number"] = "The email have to be valid";
+}
 
 $student = $db->query("SELECT * FROM students WHERE email=:email", ["email" => $email])->find();
-
 if ($student) {
     $errors["email"] = "The email already exists";
 }
