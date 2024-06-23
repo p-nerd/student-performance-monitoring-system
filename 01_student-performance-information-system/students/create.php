@@ -6,7 +6,7 @@ require_once "../views/layouts/header.php";
         <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">Student Registration</h3>
         <p class="text-sm text-muted-foreground">Fill out the form below to register as a new student.</p>
     </div>
-    <form class="p-6 space-y-4" method="post" action="store.php">
+    <form class="p-6 space-y-4" method="post" action="/students/store.php">
         <div class="grid grid-cols-2 gap-4">
             <div class="space-y-2">
                 <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="firstName">

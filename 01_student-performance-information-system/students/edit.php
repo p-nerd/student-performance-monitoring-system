@@ -8,8 +8,8 @@ $student = $db->query("SELECT * FROM students WHERE id=:id", ["id" => $id])->fin
 ?>
 <div class="rounded-lg border bg-card text-card-foreground shadow-sm w-full max-w-md" data-v0-t="card">
     <div class="flex flex-col space-y-1.5 p-6">
-        <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">Update Student Info</h3>
-        <p class="text-sm text-muted-foreground">Fill out the form below to register as a new student.</p>
+        <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">Edit Student</h3>
+        <p class="text-sm text-muted-foreground">Fill out the form below to update the student.</p>
     </div>
     <form class="p-6 space-y-4" method="post" action="/students/update.php?id=<?= $id ?>">
         <div class="grid grid-cols-2 gap-4">

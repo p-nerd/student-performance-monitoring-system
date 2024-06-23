@@ -28,6 +28,9 @@ require_once "../boot.php";
             <a class="text-sm font-medium hover:underline underline-offset-4" href="/students/index.php">
                 Students
             </a>
+            <a class="text-sm font-medium hover:underline underline-offset-4" href="/courses/index.php">
+                Courses
+            </a>
         </nav>
     </header>
     <div class="container mx-auto flex flex-col justify-center items-center">

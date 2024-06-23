@@ -1,7 +1,6 @@
 <?php
 
-require_once "../views/layouts/header.php";
-
+require_once "../boot.php";
 
 $id = $_REQUEST["id"];
 
