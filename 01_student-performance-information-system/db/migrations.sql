@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS student_courses;
+DROP TABLE IF EXISTS students;
+DROP TABLE IF EXISTS courses;
+
 CREATE TABLE students (
     id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(255) NOT NULL,
@@ -15,15 +19,16 @@ CREATE TABLE courses (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     credit int NOT NULL,
+    semester int NOT NULL,
     mark int NULL
 );
 
-INSERT INTO courses (name, credit, mark) VALUES
-('Mathematics', 3, null),
-('History', 4, null),
-('Physics', 3, null),
-('Computer Science', 3, null),
-('Literature', 4, NULL);
+INSERT INTO courses (name, credit, semester, mark) VALUES
+('Mathematics', 3, 1, null),
+('History', 4, 1, null),
+('Physics', 3, 1, null),
+('Computer Science', 3, 1, null),
+('Literature', 4, 1, NULL);
 
 CREATE TABLE student_courses (
     id INT AUTO_INCREMENT PRIMARY KEY,

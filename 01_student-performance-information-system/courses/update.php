@@ -12,6 +12,7 @@ $errors = [];
 
 $name = Validate::string($_POST["name"]);
 $credit = Validate::int($_POST["credit"]);
+$semester = Validate::int($_POST["semester"]);
 $mark = Validate::int($_POST["mark"]);
 
 if (!$name) {
@@ -19,6 +20,9 @@ if (!$name) {
 }
 if (!$credit) {
     $errors["credit"] = "The credit is required";
+}
+if (!$semester) {
+    $errors["semester"] = "The semester is required";
 }
 if (!$mark) {
     $errors["mark"] = "The mark is required";
@@ -30,10 +34,11 @@ if (!empty($errors)) {
     redirect("/courses/edit.php?id=$id");
 }
 
-$db->query('UPDATE courses SET name=:name, credit=:credit, mark=:mark WHERE id=:id', [
+$db->query('UPDATE courses SET name=:name, credit=:credit, semester=:semester, mark=:mark WHERE id=:id', [
     "id" => $id,
     "name" => $name,
     "credit" => $credit,
+    "semester" => $semester,
     "mark" => $mark,
 ]);
 

@@ -31,6 +31,9 @@ $courses = $db->query("SELECT * FROM courses")->finds();
                                 Credit
                             </th>
                             <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                Semester
+                            </th>
+                            <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
                                 Mark
                             </th>
                             <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0" <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
@@ -43,6 +46,7 @@ $courses = $db->query("SELECT * FROM courses")->finds();
                             <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0"><?= $course["name"] ?></td>
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0"><?= $course["credit"] ?></td>
+                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0"><?= $course["semester"] ?></td>
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox]j]:pr-0"><?= $course["mark"] ?? '-' ?></td>
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
                                     <div class="flex items-center justify-end gap-2">

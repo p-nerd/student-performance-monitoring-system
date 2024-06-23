@@ -10,6 +10,7 @@ $errors = [];
 
 $name = Validate::string($_POST["name"]);
 $credit = Validate::int($_POST["credit"]);
+$semester = Validate::int($_POST["semester"]);
 $mark = Validate::int($_POST["mark"]);
 
 if (!$name) {
@@ -17,6 +18,9 @@ if (!$name) {
 }
 if (!$credit) {
     $errors["credit"] = "The credit is required";
+}
+if (!$semester) {
+    $errors["semester"] = "The semester is required";
 }
 if (!$mark) {
     $errors["mark"] = "The mark is required";
@@ -31,6 +35,7 @@ if (!empty($errors)) {
 $db->query('INSERT INTO courses(name, credit, mark) VALUES(:name, :credit, :mark)', [
     "name" => $name,
     "credit" => $credit,
+    "semester" => $semester,
     "mark" => $mark,
 ]);
 

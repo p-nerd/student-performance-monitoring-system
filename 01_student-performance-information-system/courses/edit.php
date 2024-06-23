@@ -28,6 +28,14 @@ $course = $db->query("SELECT * FROM courses WHERE id=:id", ["id" => $id])->find(
             <span class="text-xs text-red-500"><?= $error('credit') ?></span>
         </div>
         <div class="space-y-2">
+            <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="semester">
+                Semester
+            </label>
+            <input value="<?= $old("semester") ?? $course['semester'] ?>" id="semester" name="semester" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Enter your phone number" type="number" />
+
+            <span class="text-xs text-red-500"><?= $error('semester') ?></span>
+        </div>
+        <div class="space-y-2">
             <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="mark">
                 Mark
             </label>
