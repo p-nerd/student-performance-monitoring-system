@@ -32,7 +32,7 @@ require __DIR__ .  "/../../boot.php";
                 Courses
             </a>
 
-            <?php if (true) : ?>
+            <?php if (!$auth) : ?>
                 <a class="text-sm font-medium hover:underline underline-offset-4" href="/auth/register.php">
                     Register
                 </a>
@@ -42,6 +42,9 @@ require __DIR__ .  "/../../boot.php";
             <?php else : ?>
                 <a class="text-sm font-medium hover:underline underline-offset-4" href="/profile">
                     Profile
+                </a>
+                <a class="text-sm font-medium hover:underline underline-offset-4" href="/auth/logout.php">
+                    Logout
                 </a>
             <?php endif ?>
         </nav>

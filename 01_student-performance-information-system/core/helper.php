@@ -2,6 +2,7 @@
 
 require __DIR__ . "/../vendor/autoload.php";
 
+use Core\Auth;
 use Core\DB;
 use Core\Error;
 use Core\Old;
@@ -33,3 +34,5 @@ function dd($value): void
 
 $error = fn (string $key) =>  Error::field($key);
 $old = fn (string $key) =>  Old::field($key);
+
+$auth = Auth::user($db);

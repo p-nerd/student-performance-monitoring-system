@@ -21,6 +21,11 @@ class User
         )->lastInsertId();
     }
 
+    public static function find(DB $db, int $id): false|array
+    {
+        return $db->query("SELECT * FROM users WHERE id=:id", ["id" => $id])->find();
+    }
+
     public static function findByEmail(DB $db, string $email): false|array
     {
         return $db->query("SELECT * FROM users WHERE email=:email", ["email" => $email])->find();

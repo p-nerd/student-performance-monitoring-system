@@ -4,6 +4,7 @@ require __DIR__ . "/../boot.php";
 
 use App\Enums\Role;
 use App\Services\User;
+use Core\Auth;
 use Core\Error;
 use Core\Old;
 use Core\Validate;
@@ -39,11 +40,13 @@ if (!empty($errors)) {
     redirect("/auth/register.php");
 }
 
-User::insert($db, [
+$user_id = User::insert($db, [
     "name" => $name,
     "email" => $email,
     "password" => $password,
     "role" => Role::STUDENT->value,
 ]);
+
+Auth::login($user_id);
 
 redirect("/profile");
