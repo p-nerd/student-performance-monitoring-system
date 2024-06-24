@@ -13,5 +13,8 @@
             "email": "67628903+p-nerd@users.noreply.github.com"
         }
     ],
-    "require": {}
+    "require": {
+        "mpdf/mpdf": "*",
+        "spatie/browsershot": "^4.1"
+    }
 }

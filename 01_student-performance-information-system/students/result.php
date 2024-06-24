@@ -9,16 +9,19 @@ $student = Student::find($db, $id);
 $courses = Student::courses($db, $id);
 $semesters = Student::semesters($courses);
 
+$cgpa = \App\Services\Course::cgpa($courses);
+
 ?>
 
 <div class="w-full max-w-4xl mx-auto space-y-10 py-8  md:px-6">
     <header class="flex items-center justify-between mb-6">
         <div>
             <h1 class="text-2xl font-bold"><?= $student["name"] ?></h1>
-            <p class="text-muted-foreground">Student ID: <?= $student["student_id"] ?></p>
+            <p>Student ID: <?= $student["student_id"] ?></p>
+            <div>CGPA: <?= $cgpa ?></div>
         </div>
-        <div class="flex items-center gap-4">
-            <div class="bg-primary rounded-md px-3 py-1 text-primary-foreground text-lg font-medium">CGPA: <?= \App\Services\Course::cgpa($courses) ?></div>
+        <div>
+            <a href="/students/result-download.php?id=<?= $id ?>" class="bg-black text-white px-4 py-2 rounded-lg">Download</a>
         </div>
     </header>
 
@@ -58,7 +61,6 @@ $semesters = Student::semesters($courses);
             <div class="text-lg bg-primary rounded-md py-1 text-end text-primary-foreground font-medium">GPA: <?= Course::gpa($courses) ?></div>
         </div>
     <?php endforeach ?>
-
 </div>
 <?
 require __DIR__ . "/../views/layouts/footer.php";

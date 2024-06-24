@@ -2,6 +2,7 @@
 
 require __DIR__ . "/../vendor/autoload.php";
 
+use App\Enums\Role;
 use Core\Auth;
 use Core\DB;
 use Core\Error;
@@ -36,3 +37,4 @@ $error = fn (string $key) =>  Error::field($key);
 $old = fn (string $key) =>  Old::field($key);
 
 $auth = Auth::user($db);
+$isTeacher = !$auth ? false : $auth["role"] === Role::TEACHER->value || $auth["role"] === Role::ADMIN->value;

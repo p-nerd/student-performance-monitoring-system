@@ -79,12 +79,36 @@ class Student
         return $courses;
     }
 
+    public static function addPointToCourses(array $courses): array
+    {
+        $newCourses = [];
+
+        foreach ($courses as $course) {
+            $newCourses[] = [...$course, "point" => Course::point($course["mark"] ?? 0)];
+        }
+
+        return $newCourses;
+    }
+
     public static function semesters(array $courses): array
     {
         $semesters = [];
+
         foreach ($courses as $course) {
             $semesters[$course["semester"]] = [...($semesters[$course["semester"]] ?? []), $course];
         }
+
         return $semesters;
+    }
+
+    public static function gpas(array $semesters): array
+    {
+        $gpas = [];
+
+        foreach ($semesters as $semester => $courses) {
+            $gpas[$semester] = Course::gpa($courses);
+        }
+
+        return $gpas;
     }
 }
