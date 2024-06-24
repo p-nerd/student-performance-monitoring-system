@@ -34,4 +34,9 @@ class Error
         }
         return "{$fields[$key]}";
     }
+
+    public static function flash()
+    {
+        $_SESSION[self::KEY] = null;
+    }
 }

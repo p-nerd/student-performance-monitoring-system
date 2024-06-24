@@ -18,12 +18,7 @@ class Course
         return self::format($sm / self::creditSum($courses));
     }
 
-    protected static function format(float $number): float
-    {
-        return  number_format($number, 2);
-    }
-
-    protected static function point(int $mark): float
+    public static function point(int $mark): float
     {
         switch (true) {
             case ($mark >= 90):
@@ -37,6 +32,11 @@ class Course
             default:
                 return 0.0;
         }
+    }
+
+    protected static function format(float $number): float
+    {
+        return  number_format($number, 2);
     }
 
     protected static function creditSum($courses): int

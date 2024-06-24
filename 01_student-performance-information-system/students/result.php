@@ -44,7 +44,8 @@ foreach ($courses as $course) {
                         <tr class="bg-muted">
                             <th class="py-3 text-left text-sm font-medium text-muted-foreground">Course</th>
                             <th class="py-3 text-left text-sm font-medium text-muted-foreground">Credit</th>
-                            <th class="py-3 text-right text-sm font-medium text-muted-foreground">Marks</th>
+                            <th class="py-3 text-left text-sm font-medium text-muted-foreground">Marks</th>
+                            <th class="py-3 text-right text-sm font-medium text-muted-foreground">Point</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,7 +53,8 @@ foreach ($courses as $course) {
                             <tr class="border-b">
                                 <td class="py-3 text-left"><?= $course["name"] ?></td>
                                 <td class="py-3 text-left"><?= $course["credit"] ?></td>
-                                <td class="py-3 text-right"><?= $course["mark"] ?? "-" ?></td>
+                                <td class="py-3 text-left"><?= $course["mark"] ?? "-" ?></td>
+                                <td class="py-3 text-right"><?= Course::point($course["mark"] ?? 0) ?? "-" ?></td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>
