@@ -18,24 +18,26 @@ $semesters = [];
 foreach ($courses as $course) {
     $semesters[$course["semester"]] = [...($semesters[$course["semester"]] ?? []), $course];
 }
+
 ?>
 
-<div class="w-full max-w-4xl mx-auto space-y-8 py-8  md:px-6">
+<div class="w-full max-w-4xl mx-auto space-y-10 py-8  md:px-6">
     <header class="flex items-center justify-between mb-6">
         <div>
             <h1 class="text-2xl font-bold"><?= $student["first_name"] ?> <?= $student["last_name"] ?></h1>
             <p class="text-muted-foreground">Student ID: <?= $student["id"] ?></p>
         </div>
         <div class="flex items-center gap-4">
-            <div class="bg-primary rounded-md px-3 py-1 text-primary-foreground text-sm font-medium">CGPA: 3.6</div>
+            <div class="bg-primary rounded-md px-3 py-1 text-primary-foreground text-lg font-medium">CGPA: <?= \App\Course::cgpa($courses) ?></div>
         </div>
     </header>
-    <?php foreach ($semesters as $semester => $courses) : ?>
-        <div class="border-b-4 ">
-            <div class="flex justify-between">
-                <h2>Semester: <?= $semester ?></h2>
-                <div class="bg-primary rounded-md py-1 text-primary-foreground text-sm font-medium">GPA: 3.8</div>
-            </div>
+    <?php
+
+    use App\Course;
+
+    foreach ($semesters as $semester => $courses) : ?>
+        <div class="space-y-4">
+            <h2 class="text-lg font-semibold">Semester: <?= $semester ?></h2>
             <div class="overflow-x-auto">
                 <table class="w-full border-collapse">
                     <thead>
@@ -56,6 +58,7 @@ foreach ($courses as $course) {
                     </tbody>
                 </table>
             </div>
+            <div class="text-lg bg-primary rounded-md py-1 text-end text-primary-foreground font-medium">GPA: <?= Course::gpa($courses) ?></div>
         </div>
     <?php endforeach ?>
 </div>

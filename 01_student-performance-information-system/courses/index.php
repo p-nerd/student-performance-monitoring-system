@@ -33,9 +33,6 @@ $courses = $db->query("SELECT * FROM courses")->finds();
                             <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
                                 Semester
                             </th>
-                            <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
-                                Mark
-                            </th>
                             <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0" <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
 
                             </th>
@@ -47,7 +44,6 @@ $courses = $db->query("SELECT * FROM courses")->finds();
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0"><?= $course["name"] ?></td>
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0"><?= $course["credit"] ?></td>
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0"><?= $course["semester"] ?></td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox]j]:pr-0"><?= $course["mark"] ?? '-' ?></td>
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
                                     <div class="flex items-center justify-end gap-2">
                                         <a href="/courses/edit.php?id=<?= $course['id'] ?>" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">

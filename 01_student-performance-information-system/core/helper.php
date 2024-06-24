@@ -26,7 +26,7 @@ function redirect(string $uri): void
 function dd($value): void
 {
     echo "<pre>";
-    var_dump($value);
+    print_r($value);
     echo "</pre>";
     die();
 }
