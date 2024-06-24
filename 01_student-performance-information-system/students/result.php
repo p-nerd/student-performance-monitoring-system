@@ -21,7 +21,7 @@ $cgpa = \App\Services\Course::cgpa($courses);
             <div>CGPA: <?= $cgpa ?></div>
         </div>
         <div>
-            <a href="/students/result-download.php?id=<?= $id ?>" class="bg-black text-white px-4 py-2 rounded-lg">Download</a>
+            <a href="/students/download.php?id=<?= $id ?>" class="bg-black text-white px-4 py-2 rounded-lg">Download</a>
         </div>
     </header>
 
