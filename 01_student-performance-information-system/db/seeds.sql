@@ -1,8 +1,16 @@
-INSERT INTO students (first_name, last_name, email, phone_number) VALUES
-('Shihab', "Mahamud", "shihab@gmail.com", "1234234"),
-('Momi', "Rohman", "momi@gmail.com", "1234234"),
-('Methila', "Afrin", "methila@gmail.com", "1234234");
+-- Insert data into the users table
+INSERT INTO users (name, email, password, role) VALUES
+('Shihab Mahamud', 'shihab@gmail.com', 'password1', 'student'),
+('Momi Rohman', 'momi@gmail.com', 'password2', 'student'),
+('Methila Afrin', 'methila@gmail.com', 'password3', 'student');
 
+-- Insert data into the students table, referencing the user_id from the users table
+INSERT INTO students (phone_number, user_id) VALUES
+('1234234', (SELECT id FROM users WHERE email = 'shihab@gmail.com')),
+('1234234', (SELECT id FROM users WHERE email = 'momi@gmail.com')),
+('1234234', (SELECT id FROM users WHERE email = 'methila@gmail.com'));
+
+-- Insert data into the courses table
 INSERT INTO courses (name, credit, semester) VALUES
 ('Mathematics', 3, 1),
 ('History', 4, 1),
@@ -15,15 +23,16 @@ INSERT INTO courses (name, credit, semester) VALUES
 ('Computer Science 2', 3, 2),
 ('Literature 2', 4, 2);
 
+-- Insert data into the student_courses table
 INSERT INTO student_courses (student_id, course_id, mark) VALUES
-(1, 1, 85), -- Shihab enrolled in Mathematics
-(1, 3, 90), -- Shihab enrolled in Physics
-(2, 2, 70), -- Momi enrolled in History
-(3, 1, 88), -- Methila enrolled in Mathematics
-(3, 4, 79), -- Methila enrolled in Computer Science
-(1, 6, 86), -- Shihab enrolled in Mathematics
-(1, 7, 81), -- Shihab enrolled in Physics
-(2, 8, 60), -- Momi enrolled in History
-(3, 9, 75), -- Methila enrolled in Mathematics
-(3, 10, 80); -- Methila enrolled in Computer Science
+((SELECT id FROM students WHERE user_id = (SELECT id FROM users WHERE email = 'shihab@gmail.com')), 1, 85), -- Shihab enrolled in Mathematics
+((SELECT id FROM students WHERE user_id = (SELECT id FROM users WHERE email = 'shihab@gmail.com')), 3, 90), -- Shihab enrolled in Physics
+((SELECT id FROM students WHERE user_id = (SELECT id FROM users WHERE email = 'momi@gmail.com')), 2, 70), -- Momi enrolled in History
+((SELECT id FROM students WHERE user_id = (SELECT id FROM users WHERE email = 'methila@gmail.com')), 1, 88), -- Methila enrolled in Mathematics
+((SELECT id FROM students WHERE user_id = (SELECT id FROM users WHERE email = 'methila@gmail.com')), 4, 79), -- Methila enrolled in Computer Science
+((SELECT id FROM students WHERE user_id = (SELECT id FROM users WHERE email = 'shihab@gmail.com')), 6, 86), -- Shihab enrolled in Mathematics 2
+((SELECT id FROM students WHERE user_id = (SELECT id FROM users WHERE email = 'shihab@gmail.com')), 7, 81), -- Shihab enrolled in Physics 2
+((SELECT id FROM students WHERE user_id = (SELECT id FROM users WHERE email = 'momi@gmail.com')), 8, 60), -- Momi enrolled in History 2
+((SELECT id FROM students WHERE user_id = (SELECT id FROM users WHERE email = 'methila@gmail.com')), 9, 75), -- Methila enrolled in Computer Science 2
+((SELECT id FROM students WHERE user_id = (SELECT id FROM users WHERE email = 'methila@gmail.com')), 10, 80); -- Methila enrolled in Literature 2
 

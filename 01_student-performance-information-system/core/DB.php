@@ -29,6 +29,10 @@ class DB
         $this->statement->execute($params);
         return $this;
     }
+    public function lastInsertId(): int
+    {
+        return $this->pdo->lastInsertId();
+    }
     public function find()
     {
         return $this->statement->fetch();

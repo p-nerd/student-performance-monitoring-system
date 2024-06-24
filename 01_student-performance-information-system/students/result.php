@@ -1,39 +1,34 @@
 <?
 require __DIR__ . "/../views/layouts/header.php";
 
+use App\Services\Student;
+
 $id = $_REQUEST["id"];
 
-$student = $db
-    ->query("SELECT * FROM students WHERE id=:id", ["id" => $id])
-    ->find();
-
-$courses = $db
-    ->query("SELECT * FROM student_courses INNER JOIN courses ON student_courses.course_id=courses.id WHERE student_id=:student_id", [
-        "student_id" => $id
-    ])
-    ->finds();
-
-$semesters = [];
-
-foreach ($courses as $course) {
-    $semesters[$course["semester"]] = [...($semesters[$course["semester"]] ?? []), $course];
-}
+$student = Student::find($db, $id);
+$courses = Student::courses($db, $id);
+$semesters = Student::semesters($courses);
 
 ?>
 
 <div class="w-full max-w-4xl mx-auto space-y-10 py-8  md:px-6">
     <header class="flex items-center justify-between mb-6">
         <div>
-            <h1 class="text-2xl font-bold"><?= $student["first_name"] ?> <?= $student["last_name"] ?></h1>
-            <p class="text-muted-foreground">Student ID: <?= $student["id"] ?></p>
+            <h1 class="text-2xl font-bold"><?= $student["name"] ?></h1>
+            <p class="text-muted-foreground">Student ID: <?= $student["student_id"] ?></p>
         </div>
         <div class="flex items-center gap-4">
-            <div class="bg-primary rounded-md px-3 py-1 text-primary-foreground text-lg font-medium">CGPA: <?= \App\Course::cgpa($courses) ?></div>
+            <div class="bg-primary rounded-md px-3 py-1 text-primary-foreground text-lg font-medium">CGPA: <?= \App\Services\Course::cgpa($courses) ?></div>
         </div>
     </header>
+
+    <?php if (!$courses) : ?>
+        <div class="text-center text-gray-500">There is no course for this student</div>
+    <?php endif ?>
+
     <?php
 
-    use App\Course;
+    use App\Services\Course;
 
     foreach ($semesters as $semester => $courses) : ?>
         <div class="space-y-4">
@@ -63,6 +58,7 @@ foreach ($courses as $course) {
             <div class="text-lg bg-primary rounded-md py-1 text-end text-primary-foreground font-medium">GPA: <?= Course::gpa($courses) ?></div>
         </div>
     <?php endforeach ?>
+
 </div>
 <?
 require __DIR__ . "/../views/layouts/footer.php";

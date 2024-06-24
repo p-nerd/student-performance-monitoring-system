@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Services;
 
 class Course
 {
@@ -15,7 +15,12 @@ class Course
             fn (float $sum, $course) => $sum + (self::point($course["mark"] ?? 0) * $course["credit"]),
             0.0
         );
-        return self::format($sm / self::creditSum($courses));
+
+        $credit_sm = self::creditSum($courses);
+        if (!$credit_sm) {
+            return 0;
+        }
+        return self::format($sm / $credit_sm);
     }
 
     public static function point(int $mark): float
