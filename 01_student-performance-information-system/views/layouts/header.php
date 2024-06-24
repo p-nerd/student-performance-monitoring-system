@@ -31,6 +31,19 @@ require __DIR__ .  "/../../boot.php";
             <a class="text-sm font-medium hover:underline underline-offset-4" href="/courses">
                 Courses
             </a>
+
+            <?php if (true) : ?>
+                <a class="text-sm font-medium hover:underline underline-offset-4" href="/auth/register.php">
+                    Register
+                </a>
+                <a class="text-sm font-medium hover:underline underline-offset-4" href="/auth/login.php">
+                    Login
+                </a>
+            <?php else : ?>
+                <a class="text-sm font-medium hover:underline underline-offset-4" href="/profile">
+                    Profile
+                </a>
+            <?php endif ?>
         </nav>
     </header>
     <div class="container mx-auto flex flex-col justify-center items-center">

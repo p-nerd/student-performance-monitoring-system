@@ -24,6 +24,11 @@ class Validate
         return self::string($phoneNumber);
     }
 
+    public static function password(string $password): string|bool
+    {
+        return self::string($password);
+    }
+
     public static function int(string $email): int|bool
     {
         return filter_var($email, FILTER_VALIDATE_INT);

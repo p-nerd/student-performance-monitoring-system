@@ -6,7 +6,18 @@ use Core\DB;
 
 class Student
 {
-    public static function find(DB $db, int $id): array
+    public static function insert(DB $db, array $data): int
+    {
+        return $db->query(
+            'INSERT INTO students(phone_number, user_id) VALUES(:phone_number, :user_id)',
+            [
+                "phone_number" => $data["phone_number"],
+                "user_id" => $data["user_id"],
+            ]
+        )->lastInsertId();
+    }
+
+    public static function find(DB $db, int $id): false|array
     {
         $student = $db
             ->query(

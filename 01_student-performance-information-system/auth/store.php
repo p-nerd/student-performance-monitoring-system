@@ -3,7 +3,6 @@
 require __DIR__ . "/../boot.php";
 
 use App\Enums\Role;
-use App\Services\Student;
 use App\Services\User;
 use Core\Error;
 use Core\Old;
@@ -13,7 +12,8 @@ $errors = [];
 
 $name = Validate::string($_POST["name"]);
 $email = Validate::email($_POST["email"]);
-$phone_number = Validate::phoneNumber($_POST["phone_number"]);
+$password = Validate::password($_POST["password"]);
+$confirm_password = Validate::password($_POST["confirm_password"]);
 
 if (!$name) {
     $errors["name"] = "The name is required";
@@ -21,8 +21,11 @@ if (!$name) {
 if (!$email) {
     $errors["email"] = "The email have to be valid";
 }
-if (!$phone_number) {
-    $errors["phone_number"] = "The email have to be valid";
+if (!$password) {
+    $errors["password"] = "The password have to be valid";
+}
+if ($password !== $confirm_password) {
+    $errors["confirm_password"] = "The passwords is not matching";
 }
 
 $user = User::findByEmail($db, $email);
@@ -33,19 +36,14 @@ if ($user) {
 if (!empty($errors)) {
     Old::set($_POST);
     Error::set("validation error", $errors);
-    redirect("/students/create.php");
+    redirect("/auth/register.php");
 }
 
-$user_id = User::insert($db, [
+User::insert($db, [
     "name" => $name,
     "email" => $email,
-    "password" => "password123",
+    "password" => $password,
     "role" => Role::STUDENT->value,
 ]);
 
-Student::insert($db, [
-    "phone_number" => $phone_number,
-    "user_id" => $user_id,
-]);
-
-redirect("/students");
+redirect("/profile");
