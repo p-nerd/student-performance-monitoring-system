@@ -1,8 +1,4 @@
-<?php
-
-require __DIR__ .  "/../../boot.php";
-
-?>
+<?php require_once __DIR__ . "/../../core/vars.php" ?>
 
 <!DOCTYPE html>
 <html lang="en">
