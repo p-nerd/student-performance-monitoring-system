@@ -11,5 +11,5 @@ composer dump-autoload
 1. Run development server
 
 ```sh 
-php -S localhost:9000
+cd public && php -S localhost:9000 
 ```
