@@ -48,7 +48,7 @@ class AuthController
         if (!empty($errors)) {
             Old::set($_POST);
             Error::set("validation error", $errors);
-            redirect("/auth/register.php");
+            redirect("/register");
         }
 
         $user_id = User::insert(db(), [
@@ -98,7 +98,7 @@ class AuthController
         if (!empty($errors)) {
             Old::set($_POST);
             Error::set("validation error", $errors);
-            redirect("/auth/register.php");
+            redirect("/login");
         }
 
         Auth::login($user["id"]);

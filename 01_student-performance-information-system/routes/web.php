@@ -4,10 +4,11 @@ use Core\Route;
 use App\Controllers\AuthController;
 use App\Controllers\CourseController;
 use App\Controllers\HomeController;
+use App\Controllers\ProfileController;
 use App\Controllers\StudentController;
 
 Route::get("/", [HomeController::class, "index"]);
-Route::get("/profile", [HomeController::class, "index"]);
+
 
 // auth
 Route::get("/register", [AuthController::class, "register"]);
@@ -41,3 +42,6 @@ Route::get("/courses/edit", [CourseController::class, "edit"]);
 Route::patch("/courses", [CourseController::class, "update"]);
 
 Route::delete("/courses", [CourseController::class, "destory"]);
+
+// profile
+Route::get("/profile", [ProfileController::class, "index"]);

@@ -22,9 +22,15 @@ class StudentController
 
     public function result()
     {
+
         $id = $_REQUEST["id"];
 
         $student = Student::find(db(), $id);
+
+        if (!isTeacher() && auth()["id"] !== $student["user_id"]) {
+            abort("Your don't have permission to access this", 403);
+        }
+
         $courses = Student::addPointToCourses(Student::courses(db(), $id));
         $semesters = Student::semesters($courses);
         $gpas = Student::gpas($semesters);
