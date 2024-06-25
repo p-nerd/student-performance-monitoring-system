@@ -80,7 +80,7 @@ class Auth
 
     protected static function getSession(string $key): ?array
     {
-        return $_SESSION[$key];
+        return $_SESSION[$key] ?? null;
     }
 
 
