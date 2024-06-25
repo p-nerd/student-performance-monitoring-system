@@ -1,12 +1,10 @@
-<?php require_once __DIR__ . "/../../core/vars.php" ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create new User</title>
+    <title>SPIS</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -28,20 +26,23 @@
                 Courses
             </a>
 
-            <?php if (!$auth) : ?>
-                <a class="text-sm font-medium hover:underline underline-offset-4" href="/auth/register.php">
+            <?php if (!auth()) : ?>
+                <a class="text-sm font-medium hover:underline underline-offset-4" href="/register">
                     Register
                 </a>
-                <a class="text-sm font-medium hover:underline underline-offset-4" href="/auth/login.php">
+                <a class="text-sm font-medium hover:underline underline-offset-4" href="/login">
                     Login
                 </a>
             <?php else : ?>
                 <a class="text-sm font-medium hover:underline underline-offset-4" href="/profile">
                     Profile
                 </a>
-                <a class="text-sm font-medium hover:underline underline-offset-4" href="/auth/logout.php">
-                    Logout
-                </a>
+                <form method="post" action="/logout" class="flex flex-col items-center justify-center">
+                    <button type="submit" class="text-sm font-medium hover:underline underline-offset-4" href="/logout">
+                        Logout
+                    </button>
+                </form>
+
             <?php endif ?>
         </nav>
     </header>

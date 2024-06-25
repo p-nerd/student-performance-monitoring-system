@@ -1,8 +1,54 @@
 <?php
 
-require_once __DIR__ . "/vars.php";
-
 use Core\View;
+use App\Enums\Role;
+use Core\Auth;
+use Core\DB;
+use Core\Error;
+use Core\Old;
+
+function abort(string $message, $code = 500): void
+{
+    echo $message;
+    http_response_code($code);
+    die();
+}
+
+function old(string $key)
+{
+    return Old::field($key);;
+}
+
+function error(string $key)
+{
+    return Error::field($key);
+}
+
+function db()
+{
+    return new DB(
+        [
+            "host" => "localhost",
+            "port" => 3306,
+            "dbname" => "systech_student-performance-information-system",
+            "charset" => "utf8mb4"
+        ],
+        "root",
+        "2611"
+    );
+}
+
+function auth()
+{
+    return Auth::user(db());;
+}
+
+function isTeacher()
+{
+    $auth = auth();
+    return !$auth ? false : $auth["role"] === Role::TEACHER->value || $auth["role"] === Role::ADMIN->value;
+}
+
 
 function redirect(string $uri): void
 {
@@ -25,5 +71,5 @@ function view(string $name, array $data = [])
 
 function layout(string $name)
 {
-    require_once View::VIEW_BASE_PATH  . "/layouts/" . $name . ".php";
+    return view("layouts/$name");
 }

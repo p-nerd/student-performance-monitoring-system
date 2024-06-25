@@ -31,9 +31,9 @@ class Route
         self::make($path, "DELETE", $callback);
     }
 
-    protected static function make(string $path, string $method = "GET", $callback)
+    protected static function make(string $path, string $method, $callback)
     {
-        self::$routes[$path] = [$method => $callback];
+        self::$routes[$path][$method] = $callback;
     }
 
     public static function resolve(): string
@@ -42,7 +42,7 @@ class Route
         $method = self::method();
 
         if (!isset(self::$routes[$path][$method])) {
-            return "Not found";
+            abort("Route not found", 404);
         }
 
         $callback = self::$routes[$path][$method];
@@ -67,19 +67,17 @@ class Route
                 return self::handleArray($callback);
             case is_callable($callback):
                 return self::handleFunction($callback);
-                break;
             default:
-                return "Invalid callback";
-                break;
+                abort("Invalid callback");
         }
     }
 
     protected static function handleArray(array $callback): string
     {
-        if (class_exists($callback[0]) && method_exists($callback[0], $callback[1])) {
-            return  call_user_func([new $callback[0], $callback[1]]) ?? "";
+        if (!class_exists($callback[0]) || !method_exists($callback[0], $callback[1])) {
+            abort("function not exist: {$callback[1]}");
         }
-        return "Method not found";
+        return call_user_func([new $callback[0], $callback[1]]) ?? "";
     }
 
     protected static function handleFunction($callback): string

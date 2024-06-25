@@ -5,13 +5,6 @@ namespace Core;
 use PDO;
 use PDOStatement;
 
-
-function abort($code = 404): void
-{
-    http_response_code($code);
-    die();
-}
-
 class DB
 {
     public PDO $pdo;
@@ -41,7 +34,7 @@ class DB
     {
         $item = $this->find();
         if (!$item) {
-            abort();
+            abort("Item not found", 404);
         }
         return $item;
     }
