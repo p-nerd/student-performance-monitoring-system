@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Services;
+namespace Core;
 
-class Template
+class View
 {
-    protected const TEMPLATE_BASE_PATH = __DIR__ . "/../../templates";
+    protected const VIEW_BASE_PATH = __DIR__ . "/../views";
 
     public static function render(string $name, array $data = []): string
     {
         extract($data);
         ob_start();
-        include self::TEMPLATE_BASE_PATH . "/$name";
+        include self::VIEW_BASE_PATH . "/$name";
         return ob_get_clean();
     }
 }

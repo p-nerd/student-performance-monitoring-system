@@ -5,6 +5,7 @@ use Core\Auth;
 use Core\DB;
 use Core\Error;
 use Core\Old;
+use Core\View;
 
 $db = new DB(
     [
@@ -36,3 +37,8 @@ $old = fn (string $key) =>  Old::field($key);
 
 $auth = Auth::user($db);
 $isTeacher = !$auth ? false : $auth["role"] === Role::TEACHER->value || $auth["role"] === Role::ADMIN->value;
+
+function view(string $name, array $data)
+{
+    return View::render($name, $data);
+}
