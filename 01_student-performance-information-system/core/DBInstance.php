@@ -14,13 +14,13 @@ class DBInstance
 
         $this->db = new DB(
             [
-                "host" => "localhost",
-                "port" => 3306,
-                "dbname" => "systech_student-performance-information-system",
+                "host" => env("DB_HOST") ?? "localhost",
+                "port" => (int)env("DB_PORT") ?? 3306,
+                "dbname" => env("DB_NAME") ?? "systech_student-performance-information-system",
                 "charset" => "utf8mb4"
             ],
-            "root",
-            "2611"
+            env("DB_USERNAME") ?? "root",
+            env("DB_PASSWORD") ?? "2611"
         );
     }
 

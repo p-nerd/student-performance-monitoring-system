@@ -4,6 +4,7 @@ use Core\View;
 use App\Enums\Role;
 use Core\Auth;
 use Core\DBInstance;
+use Core\Env;
 use Core\Error;
 use Core\Old;
 
@@ -63,4 +64,9 @@ function view(string $name, array $data = [])
 function layout(string $name)
 {
     return view("layouts/$name");
+}
+
+function env(string $key): ?string
+{
+    return Env::get($key);
 }
