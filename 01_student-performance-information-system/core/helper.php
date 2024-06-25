@@ -1,7 +1,5 @@
 <?php
 
-require __DIR__ . "/../vendor/autoload.php";
-
 use App\Enums\Role;
 use Core\Auth;
 use Core\DB;

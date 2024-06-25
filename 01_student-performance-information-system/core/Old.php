@@ -28,7 +28,7 @@ class Old
         return $old[$key];
     }
 
-    public static function flash()
+    public static function reset()
     {
         $_SESSION[self::KEY] = null;
     }
