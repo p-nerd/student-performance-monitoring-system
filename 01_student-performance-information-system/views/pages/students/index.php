@@ -1,12 +1,4 @@
-<?php
-
-use App\Services\Student;
-
-require __DIR__ . "/../views/layouts/header.php";
-
-$students = Student::all($db);
-
-?>
+<?= layout("header") ?>
 
 <div class="w-full max-w-4xl pt-10 mx-auto">
     <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
@@ -17,7 +9,7 @@ $students = Student::all($db);
                 <p class="text-sm text-muted-foreground">View and manage students.</p>
             </div>
             <div>
-                <a href="/students/create.php" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-black text-white hover:bg-accent hover:text-accent-foreground h-10 rounded-md px-3" color="destructive">
+                <a href="/students/create" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-black text-white hover:bg-accent hover:text-accent-foreground h-10 rounded-md px-3" color="destructive">
                     Add new student
                 </a>
             </div>
@@ -49,15 +41,15 @@ $students = Student::all($db);
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox]j]:pr-0"><?= $student["phone_number"] ?></td>
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
                                     <div class="flex items-center justify-end gap-2">
-                                        <a href="/students/result.php?id=<?= $student['student_id'] ?>" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+                                        <a href="/students/result?id=<?= $student['student_id'] ?>" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
                                             Result
                                         </a>
-                                        <a href="/students/edit.php?id=<?= $student['student_id'] ?>" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+                                        <a href="/students/edit?id=<?= $student['student_id'] ?>" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
                                             Edit
                                         </a>
-                                        <a href="/students/destroy.php?id=<?= $student['student_id'] ?>" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3" color="destructive">
+                                        <button onclick="fetch('/students?id=<?= $student['student_id'] ?>', {method: 'delete'})" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3" color="destructive">
                                             Delete
-                                        </a>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -69,6 +61,4 @@ $students = Student::all($db);
     </div>
 </div>
 
-<?php
-require __DIR__ . "/../views/layouts/footer.php";
-?>
+<?= layout("footer") ?>
