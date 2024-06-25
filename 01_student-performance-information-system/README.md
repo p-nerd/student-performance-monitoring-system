@@ -1,4 +1,6 @@
-## Setup
+# Student performance monitoring system
+
+## Start development
 
 1. Genereate autoload files
 

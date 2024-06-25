@@ -3,7 +3,7 @@
 use Core\View;
 use App\Enums\Role;
 use Core\Auth;
-use Core\DB;
+use Core\DBInstance;
 use Core\Error;
 use Core\Old;
 
@@ -26,16 +26,7 @@ function error(string $key)
 
 function db()
 {
-    return new DB(
-        [
-            "host" => "localhost",
-            "port" => 3306,
-            "dbname" => "systech_student-performance-information-system",
-            "charset" => "utf8mb4"
-        ],
-        "root",
-        "2611"
-    );
+    return DBInstance::getInstance()->db;
 }
 
 function auth()

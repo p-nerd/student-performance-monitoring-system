@@ -2,6 +2,8 @@
 
 require __DIR__ . "/../vendor/autoload.php";
 
+Core\Env::load();
+
 session_start();
 
 require __DIR__ . "/../core/helper.php";
