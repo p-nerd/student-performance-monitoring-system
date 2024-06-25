@@ -57,7 +57,7 @@ class Route
 
     protected static function method()
     {
-        return strtoupper($_SERVER['REQUEST_METHOD']);
+        return strtoupper($_POST["_method"] ?? $_SERVER['REQUEST_METHOD']);
     }
 
     protected static function run($callback): string

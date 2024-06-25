@@ -114,7 +114,7 @@ class StudentController
         if (!empty($errors)) {
             Old::set($_POST);
             Error::set("validation error", $errors);
-            redirect("/students/create.php");
+            redirect("/students/create");
         }
 
         $user_id = User::insert(db(), [
@@ -138,6 +138,7 @@ class StudentController
         $student = Student::find(db(), $id);
 
         return view("pages/students/edit", [
+            "id" => $id,
             "student" => $student
         ]);
     }
@@ -170,7 +171,7 @@ class StudentController
         if (!empty($errors)) {
             Old::set($_POST);
             Error::set("validation error", $errors);
-            redirect("/students/edit.php?id=$id");
+            redirect("/students/edit?id=$id");
         }
 
         db()->query('UPDATE users SET name=:name, email=:email WHERE id=:id', [

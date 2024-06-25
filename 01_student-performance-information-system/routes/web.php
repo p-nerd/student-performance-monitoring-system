@@ -2,6 +2,7 @@
 
 use Core\Route;
 use App\Controllers\AuthController;
+use App\Controllers\CourseController;
 use App\Controllers\HomeController;
 use App\Controllers\StudentController;
 
@@ -29,3 +30,14 @@ Route::get("/students/edit", [StudentController::class, "edit"]);
 Route::patch("/students", [StudentController::class, "update"]);
 
 Route::delete("/students", [StudentController::class, "destory"]);
+
+// courses
+Route::get("/courses", [CourseController::class, "index"]);
+
+Route::get("/courses/create", [CourseController::class, "create"]);
+Route::post("/courses", [CourseController::class, "store"]);
+
+Route::get("/courses/edit", [CourseController::class, "edit"]);
+Route::patch("/courses", [CourseController::class, "update"]);
+
+Route::delete("/courses", [CourseController::class, "destory"]);

@@ -1,9 +1,4 @@
-<?php
-require __DIR__ . "/../views/layouts/header.php";
-
-$courses = $db->query("SELECT * FROM courses")->finds();
-
-?>
+<?= layout("header") ?>
 
 <div class="w-full max-w-4xl pt-10 mx-auto">
     <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
@@ -14,7 +9,7 @@ $courses = $db->query("SELECT * FROM courses")->finds();
                 <p class="text-sm text-muted-foreground">View and manage courses.</p>
             </div>
             <div>
-                <a href="/courses/create.php" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-black text-white hover:bg-accent hover:text-accent-foreground h-10 rounded-md px-3" color="destructive">
+                <a href="/courses/create" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-black text-white hover:bg-accent hover:text-accent-foreground h-10 rounded-md px-3" color="destructive">
                     Add new course
                 </a>
             </div>
@@ -46,12 +41,16 @@ $courses = $db->query("SELECT * FROM courses")->finds();
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0"><?= $course["semester"] ?></td>
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
                                     <div class="flex items-center justify-end gap-2">
-                                        <a href="/courses/edit.php?id=<?= $course['id'] ?>" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+                                        <a href="/courses/edit?id=<?= $course['id'] ?>" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
                                             Edit
                                         </a>
-                                        <a href="/courses/destroy.php?id=<?= $course['id'] ?>" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3" color="destructive">
-                                            Delete
-                                        </a>
+
+                                        <form method="post" action="/courses?id=<?= $course['id'] ?>">
+                                            <input type="hidden" name="_method" value="delete" />
+                                            <button type="submit" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3" color="destructive">
+                                                Delete
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
@@ -63,6 +62,4 @@ $courses = $db->query("SELECT * FROM courses")->finds();
     </div>
 </div>
 
-<?php
-require __DIR__ . "/../views/layouts/footer.php";
-?>
+<?= layout("footer") ?>
