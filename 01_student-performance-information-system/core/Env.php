@@ -3,7 +3,6 @@
 namespace Core;
 
 use Exception;
-use Throwable;
 
 class Env
 {
@@ -14,8 +13,8 @@ class Env
 
     public static function get(string $key): ?string
     {
-        // return getenv("hello");
         return null;
+        return getenv($key);
     }
 
     protected static function loadEnv($filePath)

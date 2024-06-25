@@ -15,7 +15,7 @@ class DBInstance
         $this->db = new DB(
             [
                 "host" => env("DB_HOST") ?? "localhost",
-                "port" => (int)env("DB_PORT") ?? 3306,
+                "port" => env("DB_PORT") ?? 3306,
                 "dbname" => env("DB_NAME") ?? "systech_student-performance-information-system",
                 "charset" => "utf8mb4"
             ],

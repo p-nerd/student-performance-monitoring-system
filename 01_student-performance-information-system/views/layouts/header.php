@@ -46,4 +46,4 @@
             <?php endif ?>
         </nav>
     </header>
-    <div class="container mx-auto flex flex-col justify-center items-center">
+    <main class="container mx-auto flex flex-col justify-center items-center">
