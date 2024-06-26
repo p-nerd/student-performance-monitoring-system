@@ -29,8 +29,8 @@ class Validate
         return self::string($password);
     }
 
-    public static function int(string $email): int|bool
+    public static function int(string $int): int|bool
     {
-        return filter_var($email, FILTER_VALIDATE_INT);
+        return filter_var($int, FILTER_VALIDATE_INT);
     }
 }

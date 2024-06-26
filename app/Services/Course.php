@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Core\DB;
+
 class Course
 {
     public static function cgpa(array $courses): float
@@ -37,6 +39,35 @@ class Course
             default:
                 return 0.0;
         }
+    }
+
+    public static function all(DB $db)
+    {
+        return $db
+            ->query(
+                "
+                    SELECT *
+                    FROM courses;
+                "
+            )
+            ->finds();
+    }
+
+    public static function findsByStudent(DB $db, $student_id)
+    {
+        return $db
+            ->query(
+                "
+                    SELECT student_id, course_id, mark, name, credit, semester
+                    FROM student_courses
+                    INNER JOIN courses ON student_courses.course_id=courses.id
+                    WHERE student_id=:student_id
+                ",
+                [
+                    "student_id" => $student_id
+                ]
+            )
+            ->finds();
     }
 
     protected static function format(float $number): float

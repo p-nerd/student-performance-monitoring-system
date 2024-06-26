@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef6622d345270b70a32c4b02e04d128c",
+    "content-hash": "c0028c360ed21a55b51597e269702f8f",
     "packages": [
         {
             "name": "mpdf/mpdf",
@@ -238,6 +238,46 @@
                 }
             ],
             "time": "2024-06-12T14:39:25+00:00"
+        },
+        {
+            "name": "p-nerd/util",
+            "version": "v0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/p-nerd/util.git",
+                "reference": "06c7d1f1d9a492b0275f94936a29452c08e7a7c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/p-nerd/util/zipball/06c7d1f1d9a492b0275f94936a29452c08e7a7c4",
+                "reference": "06c7d1f1d9a492b0275f94936a29452c08e7a7c4",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^11.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PNerd\\Util\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shihab Mahamud",
+                    "email": "shihab4t@gmail.com"
+                }
+            ],
+            "description": "The object oriented wrapper around php functions",
+            "support": {
+                "issues": "https://github.com/p-nerd/util/issues",
+                "source": "https://github.com/p-nerd/util/tree/v0.0.2"
+            },
+            "time": "2024-06-26T05:40:25+00:00"
         },
         {
             "name": "paragonie/random_compat",

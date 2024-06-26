@@ -15,6 +15,10 @@ class StudentController
 {
     public function index()
     {
+        if (!isTeacher()) {
+            abort("Your don't have permission to access this", 403);
+        }
+
         return view("pages/students/index", [
             "students" => Student::all(db())
         ]);
@@ -51,6 +55,11 @@ class StudentController
         $id = $_REQUEST["id"];
 
         $student = Student::find(db(), $id);
+
+        if (!isTeacher() && auth()["id"] !== $student["user_id"]) {
+            abort("Your don't have permission to access this", 403);
+        }
+
         $courses = Student::addPointToCourses(Student::courses(db(), $id));
         $semesters = Student::semesters($courses);
         $gpas = Student::gpas($semesters);
@@ -91,11 +100,19 @@ class StudentController
 
     public function create()
     {
+        if (!isTeacher()) {
+            abort("Your don't have permission to access this", 403);
+        }
+
         return view("pages/students/create");
     }
 
     public function store()
     {
+        if (!isTeacher()) {
+            abort("Your don't have permission to access this", 403);
+        }
+
         $errors = [];
 
         $name = Validate::string($_POST["name"]);
@@ -141,7 +158,12 @@ class StudentController
     public function edit()
     {
         $id = $_REQUEST["id"];
+
         $student = Student::find(db(), $id);
+
+        if (!isTeacher() && auth()["id"] !== $student["user_id"]) {
+            abort("Your don't have permission to access this", 403);
+        }
 
         return view("pages/students/edit", [
             "id" => $id,
@@ -152,6 +174,12 @@ class StudentController
     public function update()
     {
         $id = $_REQUEST["id"];
+
+        $student = Student::find(db(), $id);
+
+        if (!isTeacher() && auth()["id"] !== $student["user_id"]) {
+            abort("Your don't have permission to access this", 403);
+        }
 
         $errors = [];
 
@@ -200,10 +228,73 @@ class StudentController
 
         $student = Student::find(db(), $id);
 
+        if (!isTeacher()) {
+            abort("Your don't have permission to access this", 403);
+        }
+
         db()->query("DELETE FROM student_courses WHERE student_id=:student_id", ["student_id" => $id]);
         db()->query("DELETE FROM students WHERE id=:id", ["id" => $id]);
         db()->query("DELETE FROM users WHERE id=:id", ["id" => $student["user_id"]]);
 
         redirect("/students");
+    }
+
+    public function assignCoursesEdit()
+    {
+        if (!isTeacher()) {
+            abort("Your don't have permission to access this", 403);
+        }
+
+        $id = Validate::int($_REQUEST["id"]);
+
+        $courses = Course::all(db());
+        $student = Student::find(db(), $id);
+        $assignedCourses = Course::findsByStudent(db(), $student["student_id"]);
+
+        $leftCourses = parray($courses)
+            ->filter(function ($course) use ($assignedCourses) {
+                return !parray($assignedCourses)->find(fn ($c) => $c["course_id"] === $course["id"]);
+            })
+            ->get();
+
+        return view("pages/students/assign-courses", [
+            "student" => $student,
+            "assignedCourses" => $assignedCourses,
+            "leftCourses" => $leftCourses,
+        ]);
+    }
+
+    public function assignCoursesUpdate()
+    {
+        if (!isTeacher()) {
+            abort("Your don't have permission to access this", 403);
+        }
+
+        $student_id = Validate::int($_POST["student_id"]);
+        $course_id = Validate::int($_POST["course_id"]);
+
+        db()->query("INSERT INTO student_courses(student_id, course_id) VALUES(:student_id, :course_id)", [
+            "student_id" => $student_id,
+            "course_id" => $course_id
+        ]);
+
+        redirect("/students/assign-courses?id=$student_id");
+    }
+
+    public function assignCoursesDestroy()
+    {
+        if (!isTeacher()) {
+            abort("Your don't have permission to access this", 403);
+        }
+
+        $student_id = Validate::int($_POST["student_id"]);
+        $course_id = Validate::int($_POST["course_id"]);
+
+        db()->query("DELETE FROM student_courses WHERE student_id=:student_id AND course_id=:course_id", [
+            "student_id" => $student_id,
+            "course_id" => $course_id
+        ]);
+
+        redirect("/students/assign-courses?id=$student_id");
     }
 }

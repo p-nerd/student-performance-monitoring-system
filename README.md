@@ -2,10 +2,10 @@
 
 ## Start development
 
-1. Genereate autoload files
+1. Install dependecies 
 
 ```sh
-composer dump-autoload
+composer install 
 ```
 
 1. Run development server

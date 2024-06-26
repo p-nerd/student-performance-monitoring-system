@@ -32,6 +32,10 @@ Route::patch("/students", [StudentController::class, "update"]);
 
 Route::delete("/students", [StudentController::class, "destory"]);
 
+Route::get("/students/assign-courses", [StudentController::class, "assignCoursesEdit"]);
+Route::post("/students/assign-courses", [StudentController::class, "assignCoursesUpdate"]);
+Route::delete("/students/assign-courses", [StudentController::class, "assignCoursesDestroy"]);
+
 // courses
 Route::get("/courses", [CourseController::class, "index"]);
 

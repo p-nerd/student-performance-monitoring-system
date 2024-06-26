@@ -7,6 +7,7 @@ use Core\DBInstance;
 use Core\Env;
 use Core\Error;
 use Core\Old;
+use PNerd\Util\PArray;
 
 function abort(string $message, $code = 500): void
 {
@@ -69,4 +70,9 @@ function layout(string $name)
 function env(string $key): ?string
 {
     return Env::get($key);
+}
+
+function parray(array $array)
+{
+    return new PArray($array);
 }

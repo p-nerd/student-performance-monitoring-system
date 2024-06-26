@@ -3,6 +3,7 @@ INSERT INTO users (name, email, password, role) VALUES
 ('Shihab Mahamud', 'shihab@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu' /*password123*/, 'student'),
 ('Momi Rohman', 'momi@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu' /*password123*/, 'student'),
 ('Methila Afrin', 'methila@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu' /*password123*/, 'student');
+('Teacher X', 'teacher@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu' /*password123*/, 'teacher');
 
 -- Insert data into the students table, referencing the user_id from the users table
 INSERT INTO students (phone_number, user_id) VALUES

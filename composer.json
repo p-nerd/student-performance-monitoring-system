@@ -15,6 +15,7 @@
     ],
     "require": {
         "mpdf/mpdf": "*",
-        "spatie/browsershot": "^4.1"
+        "spatie/browsershot": "^4.1",
+        "p-nerd/util": "^0.0.2"
     }
 }

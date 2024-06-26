@@ -28,8 +28,7 @@
                             <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
                                 Phone
                             </th>
-                            <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0" <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
-
+                            <th class="h-12 px-4 text-right align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0" <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
                             </th>
                         </tr>
                     </thead>
@@ -42,10 +41,13 @@
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
                                     <div class="flex items-center justify-end gap-2">
                                         <a href="/students/result?id=<?= $student['student_id'] ?>" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
-                                            Result
+                                            Edit Result
+                                        </a>
+                                        <a href="/students/assign-courses?id=<?= $student['student_id'] ?>" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+                                            Assign Courses
                                         </a>
                                         <a href="/students/edit?id=<?= $student['student_id'] ?>" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
-                                            Edit
+                                            Edit Info
                                         </a>
                                         <form method="post" action="/students?id=<?= $student['student_id'] ?>">
                                             <input type="hidden" name="_method" value="delete" />
