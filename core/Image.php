@@ -61,8 +61,11 @@ class Image
         return self::BASE_DIR . "/$imageName";
     }
 
-    public static function url(string $imageName): string
+    public static function url(?string $imageName): ?string
     {
+        if (!$imageName) {
+            return null;
+        }
         return "/images/$imageName";
     }
 

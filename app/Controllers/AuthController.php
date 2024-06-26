@@ -46,7 +46,10 @@ class AuthController
         }
 
         if (!empty($errors)) {
-            Old::set($_POST);
+            $old = $_POST;
+            $old["password"] = "";
+            $old["confirm_password"] = "";
+            Old::set($old);
             Error::set("validation error", $errors);
             redirect("/register");
         }
@@ -86,11 +89,8 @@ class AuthController
 
         $user = User::findByEmail(db(), $email);
 
+
         if (!$user) {
-            $errors["email"] = "Credential not matching";
-            $errors["password"] = "Credential not matching";
-        }
-        if (!Hash::check($password, $user["password"])) {
             $errors["email"] = "Credential not matching";
             $errors["password"] = "Credential not matching";
         }
@@ -99,6 +99,11 @@ class AuthController
             Old::set($_POST);
             Error::set("validation error", $errors);
             redirect("/login");
+        }
+
+        if (!Hash::check($password, $user["password"])) {
+            $errors["email"] = "Credential not matching";
+            $errors["password"] = "Credential not matching";
         }
 
         Auth::login($user["id"]);

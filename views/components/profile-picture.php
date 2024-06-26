@@ -1,3 +1,7 @@
 <div class="w-[150px] h-[150px] overflow-hidden rounded-full relative">
-    <img src="<?= $src ?>" width="150" alt="Profile Picture" className="w-full rounded-full object-cover rounded-t-2xl" />
+    <?php if ($src) : ?>
+        <img src="<?= $src ?>" width="150" alt="Profile Picture" class="w-full rounded-full object-cover" />
+    <?php else : ?>
+        <div class="w-[150px] h-[150px] bg-black"></div>
+    <?php endif ?>
 </div>

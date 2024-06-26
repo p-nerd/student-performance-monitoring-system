@@ -89,7 +89,7 @@ function parray(array $array)
     return new PArray($array);
 }
 
-function image(string $name): string
+function image(?string $name): ?string
 {
     return Image::url($name);
 }
