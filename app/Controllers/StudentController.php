@@ -209,14 +209,10 @@ class StudentController
             redirect("/students/edit?id=$id");
         }
 
-        db()->query('UPDATE users SET name=:name, email=:email WHERE id=:id', [
+        db()->query('UPDATE users SET name=:name, email=:email, phone_number=:phone_number WHERE id=:id', [
             "id" => $student["user_id"],
             "name" => $name,
             "email" => $email,
-        ]);
-
-        db()->query('UPDATE students SET phone_number=:phone_number WHERE id=:id', [
-            "id" => $student["student_id"],
             "phone_number" => $phone_number,
         ]);
 

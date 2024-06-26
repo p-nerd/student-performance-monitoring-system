@@ -35,17 +35,32 @@ class Course
 
     public static function point(int $mark): float
     {
+        // Ensure mark is within valid range
+        if ($mark < 0 || $mark > 100) {
+            return 0.0;
+        }
+
         switch (true) {
-            case ($mark >= 90):
-                return 4.0;
-            case ($mark >= 80):
-                return 3.0;
-            case ($mark >= 70):
-                return 2.0;
-            case ($mark >= 60):
-                return 1.0;
+            case ($mark >= 80 && $mark <= 100):
+                return 4.0; // A+
+            case ($mark >= 75 && $mark <= 79):
+                return 3.75; // A
+            case ($mark >= 70 && $mark <= 74):
+                return 3.5; // A-
+            case ($mark >= 65 && $mark <= 69):
+                return 3.25; // B+
+            case ($mark >= 60 && $mark <= 64):
+                return 3.0; // B
+            case ($mark >= 55 && $mark <= 59):
+                return 2.75; // B-
+            case ($mark >= 50 && $mark <= 54):
+                return 2.5; // C+
+            case ($mark >= 45 && $mark <= 49):
+                return 2.25; // C
+            case ($mark >= 40 && $mark <= 44):
+                return 2.0; // D
             default:
-                return 0.0;
+                return 0.0; // F
         }
     }
 
