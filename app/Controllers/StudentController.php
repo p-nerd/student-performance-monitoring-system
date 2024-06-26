@@ -200,6 +200,7 @@ class StudentController
 
         $student = Student::find(db(), $id);
 
+        db()->query("DELETE FROM student_courses WHERE student_id=:student_id", ["student_id" => $id]);
         db()->query("DELETE FROM students WHERE id=:id", ["id" => $id]);
         db()->query("DELETE FROM users WHERE id=:id", ["id" => $student["user_id"]]);
 
