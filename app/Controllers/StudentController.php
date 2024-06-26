@@ -219,7 +219,7 @@ class StudentController
             "phone_number" => $phone_number,
         ]);
 
-        redirect("/students");
+        redirect(!isTeacher() ? "/profile" : "/students");
     }
 
     public function destory()
@@ -296,5 +296,24 @@ class StudentController
         ]);
 
         redirect("/students/assign-courses?id=$student_id");
+    }
+
+    public function giveMark()
+    {
+        if (!isTeacher()) {
+            abort("Your don't have permission to access this", 403);
+        }
+
+        $student_id = Validate::int($_POST["student_id"]);
+        $course_id = Validate::int($_POST["course_id"]);
+        $mark = Validate::int($_POST["mark"]);
+
+        db()->query('UPDATE student_courses SET mark=:mark WHERE student_id=:student_id AND course_id=:course_id', [
+            "student_id" => $student_id,
+            "course_id" => $course_id,
+            "mark" => $mark
+        ]);
+
+        redirect("/students/result?id=$student_id");
     }
 }

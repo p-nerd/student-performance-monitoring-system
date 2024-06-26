@@ -36,6 +36,8 @@ Route::get("/students/assign-courses", [StudentController::class, "assignCourses
 Route::post("/students/assign-courses", [StudentController::class, "assignCoursesUpdate"]);
 Route::delete("/students/assign-courses", [StudentController::class, "assignCoursesDestroy"]);
 
+Route::post("/students/give-mark", [StudentController::class, "giveMark"]);
+
 // courses
 Route::get("/courses", [CourseController::class, "index"]);
 
@@ -49,3 +51,6 @@ Route::delete("/courses", [CourseController::class, "destory"]);
 
 // profile
 Route::get("/profile", [ProfileController::class, "index"]);
+
+Route::get("/profile/edit", [ProfileController::class, "edit"]);
+Route::patch("/profile", [ProfileController::class, "update"]);

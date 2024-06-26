@@ -12,17 +12,25 @@ class Course
     }
     public static function gpa(array $courses): float
     {
-        $sm = array_reduce(
+
+        $sum = array_reduce(
             $courses,
-            fn (float $sum, $course) => $sum + (self::point($course["mark"] ?? 0) * $course["credit"]),
+            function (float $sum, $course) {
+                if (!$course["mark"]) {
+                    return $sum;
+                }
+                return $sum + (self::point($course["mark"] ?? 0) * $course["credit"]);
+            },
             0.0
         );
 
-        $credit_sm = self::creditSum($courses);
-        if (!$credit_sm) {
+        $creditSum = self::creditSum($courses);
+
+        if (!$creditSum) {
             return 0;
         }
-        return self::format($sm / $credit_sm);
+
+        return self::format($sum / $creditSum);
     }
 
     public static function point(int $mark): float
@@ -77,6 +85,11 @@ class Course
 
     protected static function creditSum($courses): int
     {
-        return array_reduce($courses, fn ($sum, $course) => $sum + $course["credit"], 0);
+        return array_reduce($courses, function ($sum, $course) {
+            if (!$course["mark"]) {
+                return $sum;
+            }
+            return $sum + $course["credit"];
+        }, 0);
     }
 }

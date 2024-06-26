@@ -11,6 +11,10 @@ class CourseController
 {
     public function index()
     {
+        if (!isTeacher()) {
+            abort("Your don't have permission to access this", 403);
+        }
+
         $courses = db()->query("SELECT * FROM courses")->finds();
 
         return view("pages/courses/index", [
@@ -20,11 +24,19 @@ class CourseController
 
     public function create()
     {
+        if (!isTeacher()) {
+            abort("Your don't have permission to access this", 403);
+        }
+
         return view("pages/courses/create");
     }
 
     public function store()
     {
+        if (!isTeacher()) {
+            abort("Your don't have permission to access this", 403);
+        }
+
         $errors = [];
 
         $name = Validate::string($_POST["name"]);
@@ -57,6 +69,10 @@ class CourseController
     }
     public function edit()
     {
+        if (!isTeacher()) {
+            abort("Your don't have permission to access this", 403);
+        }
+
         $id = $_REQUEST["id"];
 
         $course = db()->query("SELECT * FROM courses WHERE id=:id", ["id" => $id])->find();
@@ -69,6 +85,10 @@ class CourseController
 
     function update()
     {
+        if (!isTeacher()) {
+            abort("Your don't have permission to access this", 403);
+        }
+
         $id = $_REQUEST["id"];
 
         $errors = [];
@@ -105,6 +125,10 @@ class CourseController
 
     public function destory()
     {
+        if (!isTeacher()) {
+            abort("Your don't have permission to access this", 403);
+        }
+
         $id = $_REQUEST["id"];
 
         db()->query("DELETE FROM student_courses WHERE course_id=:id", ["id" => $id]);

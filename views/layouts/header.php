@@ -19,12 +19,14 @@
             </a>
         </div>
         <nav class="ml-auto flex gap-4 sm:gap-6">
-            <a class="text-sm font-medium hover:underline underline-offset-4" href="/students">
-                Students
-            </a>
-            <a class="text-sm font-medium hover:underline underline-offset-4" href="/courses">
-                Courses
-            </a>
+            <?php if (isTeacher()) : ?>
+                <a class="text-sm font-medium hover:underline underline-offset-4" href="/students">
+                    Students
+                </a>
+                <a class="text-sm font-medium hover:underline underline-offset-4" href="/courses">
+                    Courses
+                </a>
+            <?php endif ?>
 
             <?php if (!auth()) : ?>
                 <a class="text-sm font-medium hover:underline underline-offset-4" href="/register">
@@ -46,4 +48,4 @@
             <?php endif ?>
         </nav>
     </header>
-    <main class="container mx-auto flex flex-col justify-center items-center">
+    <main class="container mx-auto flex flex-col justify-center items-center" style="min-height: calc(100vh - 224px);">

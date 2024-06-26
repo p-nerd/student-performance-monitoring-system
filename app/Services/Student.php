@@ -19,7 +19,7 @@ class Student
 
     public static function find(DB $db, int $id): false|array
     {
-        $student = $db
+        return $db
             ->query(
                 "
                     SELECT
@@ -38,7 +38,22 @@ class Student
                 ]
             )
             ->find();
-        return $student;
+    }
+
+    public static function findByUser(DB $db, $userId)
+    {
+        return $db
+            ->query(
+                "
+                    SELECT *
+                    FROM students
+                    WHERE user_id=:userId
+                ",
+                [
+                    "userId" => $userId
+                ]
+            )
+            ->find();
     }
 
     public static function all(DB $db)
@@ -60,7 +75,7 @@ class Student
         return $students;
     }
 
-    public static function courses(DB $db, int $student_id): array
+    public static function courses(DB $db, int $studentId): array
     {
         $courses = $db
             ->query(
@@ -69,10 +84,10 @@ class Student
                         student_id, course_id, mark, name, credit, semester
                     FROM student_courses
                     INNER JOIN courses ON student_courses.course_id=courses.id
-                    WHERE student_id=:student_id
+                    WHERE student_id=:studentId
                 ",
                 [
-                    "student_id" => $student_id
+                    "studentId" => $studentId
                 ]
             )
             ->finds();
@@ -84,7 +99,7 @@ class Student
         $newCourses = [];
 
         foreach ($courses as $course) {
-            $newCourses[] = [...$course, "point" => Course::point($course["mark"] ?? 0)];
+            $newCourses[] = [...$course, "point" => $course["mark"] ? Course::point($course["mark"]) : null];
         }
 
         return $newCourses;

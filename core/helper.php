@@ -36,6 +36,12 @@ function auth()
     return Auth::user(db());;
 }
 
+function isStudent()
+{
+    $auth = auth();
+    return !$auth ? false : $auth["role"] === Role::STUDENT->value;
+}
+
 function isTeacher()
 {
     $auth = auth();
