@@ -2,15 +2,21 @@
 
 namespace App\Services;
 
+use Core\File;
 use Spatie\Browsershot\Browsershot;
 
 class PDF
 {
-    protected const BASE_PDF_PATH = __DIR__ . "/../../tmp/pdfs";
+    protected const BASE_DIR = __DIR__ . "/../../tmp/pdfs";
+
+    public static function createDir()
+    {
+        File::createDirIfNotExist(self::BASE_DIR);
+    }
 
     public static function make(string $html, string $name)
     {
-        $path = self::BASE_PDF_PATH . "/" . self::sluggify($name) . ".pdf";
+        $path = self::BASE_DIR . "/" . self::sluggify($name) . ".pdf";
         Browsershot::html($html)->save($path);
         return $path;
     }

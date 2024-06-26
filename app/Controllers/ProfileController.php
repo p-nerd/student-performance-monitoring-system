@@ -7,7 +7,9 @@ use App\Services\Student;
 use App\Services\User;
 use Core\Old;
 use Core\Error;
+use Core\Image;
 use Core\Validate;
+use Exception;
 
 class ProfileController
 {
@@ -38,12 +40,16 @@ class ProfileController
 
         $name = Validate::string($_POST["name"]);
         $email = Validate::email($_POST["email"]);
+        $phone_number = Validate::phoneNumber($_POST["phone_number"]);
 
         if (!$name) {
             $errors["name"] = "The name is required";
         }
         if (!$email) {
             $errors["email"] = "The email have to be valid";
+        }
+        if (!$phone_number) {
+            $errors["phone_number"] = "The phone number have to be valid";
         }
 
         $user = auth();
@@ -52,16 +58,27 @@ class ProfileController
             $errors["email"] = "The email already exists";
         }
 
+        if (Image::isExist($_FILES["pricture"])) {
+            try {
+                $avatar = Image::save($_FILES["pricture"]);
+            } catch (Exception $e) {
+                $errors["avatar"] = $e->getMessage();
+            }
+        } else {
+            $avatar = $user["avatar"];
+        }
+
         if (!empty($errors)) {
             Old::set($_POST);
             Error::set("validation error", $errors);
             redirect("/profile/edit");
         }
 
-        db()->query('UPDATE users SET name=:name, email=:email WHERE id=:id', [
-            "id" => $user["id"],
+        User::update(db(), $user["id"], [
             "name" => $name,
             "email" => $email,
+            "phone_number" => $phone_number,
+            "avatar" => $avatar
         ]);
 
         redirect("/profile");

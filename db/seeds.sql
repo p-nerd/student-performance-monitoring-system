@@ -1,15 +1,15 @@
 -- Insert data into the users table
-INSERT INTO users (name, email, password, role) VALUES
-('Shihab Mahamud', 'shihab@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu' /*password123*/, 'student'),
-('Momi Rohman', 'momi@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu' /*password123*/, 'student'),
-('Methila Afrin', 'methila@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu' /*password123*/, 'student');
-('Teacher X', 'teacher@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu' /*password123*/, 'teacher');
+INSERT INTO users (name, email, password, role, phone_number) VALUES
+('Shihab Mahamud', 'shihab@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu' /*password123*/, 'student', '1234234'),
+('Momi Rohman', 'momi@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu' /*password123*/, 'student', '1234234'),
+('Methila Afrin', 'methila@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu' /*password123*/, 'student', '1234234');
+('Teacher X', 'teacher@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu' /*password123*/, 'teacher', '1234234');
 
 -- Insert data into the students table, referencing the user_id from the users table
-INSERT INTO students (phone_number, user_id) VALUES
-('1234234', (SELECT id FROM users WHERE email = 'shihab@gmail.com')),
-('1234234', (SELECT id FROM users WHERE email = 'momi@gmail.com')),
-('1234234', (SELECT id FROM users WHERE email = 'methila@gmail.com'));
+INSERT INTO students (user_id) VALUES
+((SELECT id FROM users WHERE email = 'shihab@gmail.com')),
+((SELECT id FROM users WHERE email = 'momi@gmail.com')),
+((SELECT id FROM users WHERE email = 'methila@gmail.com'));
 
 -- Insert data into the courses table
 INSERT INTO courses (name, credit, semester) VALUES

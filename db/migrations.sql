@@ -8,12 +8,13 @@ CREATE TABLE users (
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role ENUM('student', 'teacher', 'admin') DEFAULT 'student'
+    role ENUM('student', 'teacher', 'admin') DEFAULT 'student',
+    phone_number VARCHAR(255) NULL,
+    avatar VARCHAR(255) NULL
 );
 
 CREATE TABLE students (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    phone_number VARCHAR(255) NOT NULL,
     user_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );

@@ -126,7 +126,7 @@ class StudentController
             $errors["email"] = "The email have to be valid";
         }
         if (!$phone_number) {
-            $errors["phone_number"] = "The email have to be valid";
+            $errors["phone_number"] = "The phone number have to be valid";
         }
 
         $user = User::findByEmail(db(), $email);

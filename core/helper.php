@@ -6,6 +6,7 @@ use Core\Auth;
 use Core\DBInstance;
 use Core\Env;
 use Core\Error;
+use Core\Image;
 use Core\Old;
 use PNerd\Util\PArray;
 
@@ -68,6 +69,11 @@ function view(string $name, array $data = [])
     return View::render($name, $data);
 }
 
+function component(string $name, array $data = [])
+{
+    return view("components/$name", $data);
+}
+
 function layout(string $name)
 {
     return view("layouts/$name");
@@ -81,4 +87,9 @@ function env(string $key): ?string
 function parray(array $array)
 {
     return new PArray($array);
+}
+
+function image(string $name): string
+{
+    return Image::url($name);
 }

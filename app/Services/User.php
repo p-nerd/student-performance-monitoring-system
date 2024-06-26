@@ -21,6 +21,24 @@ class User
         )->lastInsertId();
     }
 
+    public static function update(DB $db, int $id, array $data)
+    {
+        $db->query(
+            "
+                UPDATE users
+                SET name=:name, email=:email, phone_number=:phone_number, avatar=:avatar
+                WHERE id=:id
+            ",
+            [
+                "id" => $id,
+                "name" => $data["name"],
+                "email" => $data["email"],
+                "phone_number" => $data["phone_number"],
+                "avatar" => $data["avatar"]
+            ]
+        );
+    }
+
     public static function find(DB $db, int $id): false|array
     {
         return $db->query("SELECT * FROM users WHERE id=:id", ["id" => $id])->find();
