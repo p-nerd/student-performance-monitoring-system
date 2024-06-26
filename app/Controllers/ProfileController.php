@@ -25,9 +25,6 @@ class ProfileController
 
     public function edit()
     {
-        if (!isTeacher()) {
-            abort("Your don't have permission to access this", 403);
-        }
         $user = auth();
 
         return view("pages/profile/edit", [
@@ -37,10 +34,6 @@ class ProfileController
 
     public function update()
     {
-        if (!isTeacher()) {
-            abort("Your don't have permission to access this", 403);
-        }
-
         $errors = [];
 
         $name = Validate::string($_POST["name"]);

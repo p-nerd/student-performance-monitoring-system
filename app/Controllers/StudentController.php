@@ -219,7 +219,7 @@ class StudentController
             "phone_number" => $phone_number,
         ]);
 
-        redirect(!isTeacher() ? "/profile" : "/students");
+        redirect("/students");
     }
 
     public function destory()
