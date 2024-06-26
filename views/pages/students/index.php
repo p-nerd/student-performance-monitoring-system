@@ -1,6 +1,6 @@
 <?= layout("header") ?>
 
-<div class="w-full max-w-4xl pt-10 mx-auto">
+<div class="w-full max-w-6xl pt-10 mx-auto">
     <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
 
         <div class="p-6 flex justify-between">
@@ -28,6 +28,9 @@
                             <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
                                 Phone
                             </th>
+                            <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                Major
+                            </th>
                             <th class="h-12 px-4 text-right align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0" <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
                             </th>
                         </tr>
@@ -38,6 +41,7 @@
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0"><?= $student["name"] ?></td>
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0"><?= $student["email"] ?></td>
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox]j]:pr-0"><?= $student["phone_number"] ?></td>
+                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0"><?= $student["major"] ?></td>
                                 <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
                                     <div class="flex items-center justify-end gap-2">
                                         <a href="/students/result?id=<?= $student['student_id'] ?>" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">

@@ -9,9 +9,10 @@ class Student
     public static function insert(DB $db, array $data): int
     {
         return $db->query(
-            'INSERT INTO students(user_id) VALUES(:phone_number, :user_id)',
+            'INSERT INTO students(user_id, major) VALUES(:user_id, :major)',
             [
                 "user_id" => $data["user_id"],
+                "major" => $data["major"]
             ]
         )->lastInsertId();
     }
@@ -65,8 +66,9 @@ class Student
                         users.name as name,
                         users.email as email,
                         users.role as role,
+                        users.phone_number AS phone_number,
                         students.id AS student_id,
-                        users.phone_number AS phone_number
+                        students.major as major
                     FROM students
                     INNER JOIN users ON students.user_id=users.id
                 "

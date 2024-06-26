@@ -58,7 +58,7 @@ class AuthController
             "name" => $name,
             "email" => $email,
             "password" => $password,
-            "role" => Role::STUDENT->value,
+            "role" => Role::GUEST->value,
         ]);
 
         Auth::login($user_id);
@@ -87,8 +87,13 @@ class AuthController
             $errors["password"] = "The password have to be valid";
         }
 
-        $user = User::findByEmail(db(), $email);
+        if (!empty($errors)) {
+            Old::set($_POST);
+            Error::set("validation error", $errors);
+            redirect("/login");
+        }
 
+        $user = User::findByEmail(db(), $email);
 
         if (!$user) {
             $errors["email"] = "Credential not matching";

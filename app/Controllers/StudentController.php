@@ -19,8 +19,10 @@ class StudentController
             abort("Your don't have permission to access this", 403);
         }
 
+        $students = Student::all(db());
+
         return view("pages/students/index", [
-            "students" => Student::all(db())
+            "students" => $students
         ]);
     }
 
@@ -118,21 +120,19 @@ class StudentController
         $name = Validate::string($_POST["name"]);
         $email = Validate::email($_POST["email"]);
         $phone_number = Validate::phoneNumber($_POST["phone_number"]);
+        $major = Validate::string($_POST["major"]);
 
-        if (!$name) {
-            $errors["name"] = "The name is required";
-        }
-        if (!$email) {
-            $errors["email"] = "The email have to be valid";
-        }
-        if (!$phone_number) {
-            $errors["phone_number"] = "The phone number have to be valid";
-        }
+        if (!$name) $errors["name"] = "The name is required";
+        if (!$email) $errors["email"] = "The email have to be valid";
+        if (!$phone_number) $errors["phone_number"] = "The phone number have to be valid";
+        if (!$major) $errors["major"] = "The major is required";
+
 
         $user = User::findByEmail(db(), $email);
         if ($user) {
             $errors["email"] = "The email already exists";
         }
+
 
         if (!empty($errors)) {
             Old::set($_POST);
@@ -145,10 +145,11 @@ class StudentController
             "email" => $email,
             "password" => "password123",
             "role" => Role::STUDENT->value,
+            "phone_number" => $phone_number
         ]);
 
         Student::insert(db(), [
-            "phone_number" => $phone_number,
+            "major" => $major,
             "user_id" => $user_id,
         ]);
 

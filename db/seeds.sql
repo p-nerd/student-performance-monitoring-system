@@ -1,15 +1,16 @@
 -- Insert data into the users table
 INSERT INTO users (name, email, password, role, phone_number) VALUES
-('Shihab Mahamud', 'shihab@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu' /*password123*/, 'student', '1234234'),
-('Momi Rohman', 'momi@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu' /*password123*/, 'student', '1234234'),
-('Methila Afrin', 'methila@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu' /*password123*/, 'student', '1234234'),
-('Teacher X', 'teacher@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu' /*password123*/, 'teacher', '1234234');
+('Shihab Mahamud', 'shihab@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu', 'student', '1234234'),
+('Momi Rohman', 'momi@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu', 'student', '1234234'),
+('Methila Afrin', 'methila@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu', 'student', '1234234'),
+('Teacher X', 'teacher@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu', 'teacher', '1234234'),
+('Guest X', 'guest@gmail.com', '$2y$10$fXGWFJONQE6J1ruDnNAZGu.UCaU5gifwogJMWLFMMyUZeZLyfC0wu', 'guest', '1234234');
 
 -- Insert data into the students table, referencing the user_id from the users table
-INSERT INTO students (user_id) VALUES
-((SELECT id FROM users WHERE email = 'shihab@gmail.com')),
-((SELECT id FROM users WHERE email = 'momi@gmail.com')),
-((SELECT id FROM users WHERE email = 'methila@gmail.com'));
+INSERT INTO students (user_id, major) VALUES
+((SELECT id FROM users WHERE email = 'shihab@gmail.com'), 'CSE'),
+((SELECT id FROM users WHERE email = 'momi@gmail.com'), 'CSE'),
+((SELECT id FROM users WHERE email = 'methila@gmail.com'), 'CSE');
 
 -- Insert data into the courses table
 INSERT INTO courses (name, credit, semester) VALUES
@@ -36,4 +37,3 @@ INSERT INTO student_courses (student_id, course_id, mark) VALUES
 ((SELECT id FROM students WHERE user_id = (SELECT id FROM users WHERE email = 'momi@gmail.com')), 8, 60), -- Momi enrolled in History 2
 ((SELECT id FROM students WHERE user_id = (SELECT id FROM users WHERE email = 'methila@gmail.com')), 9, 75), -- Methila enrolled in Computer Science 2
 ((SELECT id FROM students WHERE user_id = (SELECT id FROM users WHERE email = 'methila@gmail.com')), 10, 80); -- Methila enrolled in Literature 2
-
