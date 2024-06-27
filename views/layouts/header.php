@@ -20,25 +20,15 @@
         </div>
         <nav class="ml-auto flex gap-4 sm:gap-6">
             <?php if (isTeacher()) : ?>
-                <a class="text-sm font-medium hover:underline underline-offset-4" href="/students">
-                    Students
-                </a>
-                <a class="text-sm font-medium hover:underline underline-offset-4" href="/courses">
-                    Courses
-                </a>
+                <?= component("nav-link", ["label" => "Students", "href" => "/students"]) ?>
+                <?= component("nav-link", ["label" => "Courses", "href" => "/courses"]) ?>
             <?php endif ?>
 
             <?php if (!auth()) : ?>
-                <a class="text-sm font-medium hover:underline underline-offset-4" href="/register">
-                    Register
-                </a>
-                <a class="text-sm font-medium hover:underline underline-offset-4" href="/login">
-                    Login
-                </a>
+                <?= component("nav-link", ["label" => "Register", "href" => "/register"]) ?>
+                <?= component("nav-link", ["label" => "Login", "href" => "/login"]) ?>
             <?php else : ?>
-                <a class="text-sm font-medium hover:underline underline-offset-4" href="/profile">
-                    Profile
-                </a>
+                <?= component("nav-link", ["label" => "Profile", "href" => "/profile"]) ?>
                 <form method="post" action="/logout" class="flex flex-col items-center justify-center">
                     <button type="submit" class="text-sm font-medium hover:underline underline-offset-4" href="/logout">
                         Logout

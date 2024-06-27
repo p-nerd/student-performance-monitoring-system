@@ -8,6 +8,7 @@ use Core\Env;
 use Core\Error;
 use Core\Image;
 use Core\Old;
+use Core\Route;
 use PNerd\Util\PArray;
 
 function abort(string $message, $code = 500): void
@@ -92,4 +93,9 @@ function parray(array $array)
 function image(?string $name): ?string
 {
     return Image::url($name);
+}
+
+function url(): string
+{
+    return Route::path();
 }

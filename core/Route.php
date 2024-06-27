@@ -50,7 +50,7 @@ class Route
         return self::run($callback);
     }
 
-    protected static function path()
+    public static function path()
     {
         return parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     }
