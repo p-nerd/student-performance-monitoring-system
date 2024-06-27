@@ -95,7 +95,7 @@ function image(?string $name): ?string
     return Image::url($name);
 }
 
-function url(): string
+function isThisRoute(string $prefix): string
 {
-    return Route::path();
+    return Route::path() === $prefix;
 }
