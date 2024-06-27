@@ -158,13 +158,11 @@ class StudentController
 
     public function edit()
     {
+        if (!isTeacher()) abort("Your don't have permission to access this", 403);
+
         $id = $_REQUEST["id"];
 
         $student = Student::find(db(), $id);
-
-        if (!isTeacher() && auth()["id"] !== $student["user_id"]) {
-            abort("Your don't have permission to access this", 403);
-        }
 
         return view("pages/students/edit", [
             "id" => $id,
@@ -174,19 +172,18 @@ class StudentController
 
     public function update()
     {
+        if (!isTeacher()) abort("Your don't have permission to access this", 403);
+
         $id = $_REQUEST["id"];
 
         $student = Student::find(db(), $id);
-
-        if (!isTeacher() && auth()["id"] !== $student["user_id"]) {
-            abort("Your don't have permission to access this", 403);
-        }
 
         $errors = [];
 
         $name = Validate::string($_POST["name"]);
         $email = Validate::email($_POST["email"]);
         $phone_number = Validate::phoneNumber($_POST["phone_number"]);
+        $major = Validate::string($_POST["major"]);
 
         if (!$name) {
             $errors["name"] = "The name is required";
@@ -195,7 +192,10 @@ class StudentController
             $errors["email"] = "The email have to be valid";
         }
         if (!$phone_number) {
-            $errors["phone_number"] = "The email have to be valid";
+            $errors["phone_number"] = "The phone number have to be valid";
+        }
+        if (!$major) {
+            $errors["major"] = "The major is required";
         }
 
         $student = Student::find(db(), $id);
@@ -209,12 +209,24 @@ class StudentController
             redirect("/students/edit?id=$id");
         }
 
-        db()->query('UPDATE users SET name=:name, email=:email, phone_number=:phone_number WHERE id=:id', [
-            "id" => $student["user_id"],
-            "name" => $name,
-            "email" => $email,
-            "phone_number" => $phone_number,
-        ]);
+        User::update(
+            db(),
+            $student["user_id"],
+            [
+                "id" => $student["user_id"],
+                "name" => $name,
+                "email" => $email,
+                "phone_number" => $phone_number,
+            ]
+        );
+
+        Student::update(
+            db(),
+            $student["student_id"],
+            [
+                "major" => $major
+            ]
+        );
 
         redirect("/students");
     }

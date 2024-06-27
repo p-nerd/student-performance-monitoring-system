@@ -29,10 +29,10 @@ class User
     {
         $user = static::find($db, $id);
 
-        $db->query(
+        return $db->query(
             "
                 UPDATE users
-                SET name=:name, email=:email, phone_number=:phone_number, avatar=:avatar
+                SET name=:name, email=:email, phone_number=:phone_number, role=:role, avatar=:avatar
                 WHERE id=:id
             ",
             [
@@ -40,6 +40,7 @@ class User
                 "name" => $data["name"] ?? $user["name"],
                 "email" => $data["email"] ?? $user["email"],
                 "phone_number" => $data["phone_number"] ?? $user["phone_number"],
+                "role" => $data["role"] ?? $user["role"],
                 "avatar" => $data["avatar"] ?? $user["avatar"]
             ]
         );

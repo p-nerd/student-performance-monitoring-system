@@ -8,13 +8,45 @@ class Student
 {
     public static function insert(DB $db, array $data): int
     {
-        return $db->query(
-            'INSERT INTO students(user_id, major) VALUES(:user_id, :major)',
-            [
-                "user_id" => $data["user_id"],
-                "major" => $data["major"]
-            ]
-        )->lastInsertId();
+        return $db
+            ->query(
+                "
+                    INSERT INTO students(user_id, major)
+                    VALUES(:user_id, :major)
+                ",
+                [
+                    "user_id" => $data["user_id"],
+                    "major" => $data["major"]
+                ]
+            )->lastInsertId();
+    }
+
+    public static function update(DB $db, int $id, array $data)
+    {
+        $student = $db
+            ->query(
+                "
+                    SELECT * FROM students
+                    WHERE id=:id
+                ",
+                [
+                    "id" => $id
+                ]
+            )
+            ->find();
+
+        return $db
+            ->query(
+                "
+                    UPDATE students
+                    SET major=:major
+                    WHERE id=:id
+                ",
+                [
+                    "id" => $id,
+                    "major" => $data["major"] ?? $student["major"]
+                ]
+            );
     }
 
     public static function find(DB $db, int $id): false|array
@@ -27,8 +59,9 @@ class Student
                         users.name as name,
                         users.email as email,
                         users.role as role,
+                        users.phone_number AS phone_number,
                         students.id AS student_id,
-                        users.phone_number AS phone_number
+                        students.major as major
                     FROM students
                     INNER JOIN users ON students.user_id=users.id
                     WHERE students.id=:id
