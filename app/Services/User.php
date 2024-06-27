@@ -19,7 +19,7 @@ class User
                 "name" => $data["name"],
                 "email" => $data["email"],
                 "password" => Hash::make($data["password"]),
-                "role" => $data["role"] || Role::GUEST->value,
+                "role" => $data["role"] ?? Role::GUEST->value,
                 "phone_number" => $data["phone_number"]
             ]
         )->lastInsertId();
