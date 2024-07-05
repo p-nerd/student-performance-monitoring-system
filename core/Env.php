@@ -8,7 +8,7 @@ class Env
 {
     public static function load()
     {
-        static::loadEnv(__DIR__ . "/../.env");
+         //   static::loadEnv(__DIR__ . "/../.env");
     }
 
     public static function get(string $key): ?string
