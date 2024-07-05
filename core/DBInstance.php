@@ -14,22 +14,20 @@ class DBInstance
 
         $this->db = new DB(
             [
-                "host" => env("DB_HOST") ?? "localhost",
-                "port" => env("DB_PORT") ?? 3306,
-                "dbname" => env("DB_NAME") ?? "systech_student-performance-information-system",
+                "host" => conf("db.mysql.host"),
+                "port" => conf("db.mysql.port"),
+                "dbname" => conf("db.mysql.name"),
                 "charset" => "utf8mb4"
             ],
-            env("DB_USERNAME") ?? "root",
-            env("DB_PASSWORD") ?? "2611"
+            conf("db.mysql.username"),
+            conf("db.mysql.password"),
         );
     }
 
-    // The object is not cloneable.
     private function __clone()
     {
     }
 
-    // The static method that controls access to the singleton instance.
     public static function getInstance()
     {
         if (self::$instance == null) {

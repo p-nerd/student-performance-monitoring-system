@@ -3,6 +3,7 @@
 use Core\View;
 use App\Enums\Role;
 use Core\Auth;
+use Core\Conf;
 use Core\DBInstance;
 use Core\Env;
 use Core\Error;
@@ -98,4 +99,9 @@ function image(?string $name): ?string
 function isThisRoute(string $prefix): string
 {
     return Route::path() === $prefix;
+}
+
+function conf(string $name): string
+{
+    return Conf::get($name);
 }
