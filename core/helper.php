@@ -101,6 +101,15 @@ function isThisRoute(string $prefix): string
     return Route::path() === $prefix;
 }
 
+/**
+ * Retrieves a configuration value using the Conf class.
+ *
+ * Example usage: conf('db.mysql.host') will retrieve the 'host' value
+ * from the 'mysql' section of the 'db' configuration file.
+ *
+ * @param string $name The dot-separated configuration name (e.g., 'file.section.key')
+ * @return string The configuration value if found; empty string if not found or invalid format.
+ */
 function conf(string $name): string
 {
     return Conf::get($name);
