@@ -1,4 +1,8 @@
-# Student Performance Monitoring System
+<p align="center">
+  <img src="./public/logo.svg" alt="Student Performance Monitoring System" width="200" height="200" />
+</p>
+
+<h1 align="center">Student Performance Monitoring System</h1>
 
 A web-based Student Performance Monitoring System developed with raw PHP,
 designed to streamline academic performance tracking in educational institutions.  
