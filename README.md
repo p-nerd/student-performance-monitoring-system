@@ -76,7 +76,10 @@ while maintaining clean code architecture and implementing modern development pr
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-## Contact
+## 👤 Author
 
-For questions or feedback, contact [shihab4t@gmail.com](mailto:shihab4t@gmail.com) or visit [developershihab.com](https://developershihab.com).
+**Shihab Mahamud**
 
+- Email: shihab4t@gmail.com
+- Website: [https://developershihab.com](https://developershihab.com)
+- GitHub: [@p-nerd](https://github.com/p-nerd)
