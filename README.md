@@ -3,7 +3,7 @@
 </p>
 <h1 align="center">Student Performance Monitoring System</h1>
 
-A web-based application built with raw PHP that streamlines academic performance tracking in educational institutions. Features a Laravel-like architecture with PDO for MySQL database operations and TailwindCSS for modern UI.
+A web-based application built with raw PHP that streamlines academic performance tracking in educational institutions. Features a Laravel-like architecture with PDO for MySQL database..
 
 Built during an internship at [Systech Digital Limited](https://www.systechdigital.com), this system provides comprehensive student profile management, performance analytics, automated reporting, and role-based access control for educators to make data-driven decisions.
 
