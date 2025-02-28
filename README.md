@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./public/logo.svg" alt="Student Performance Monitoring System" width="200" height="200" />
+  <img src="./public/logo.png" alt="Student Performance Monitoring System" width="200" height="200" />
 </p>
 <h1 align="center">Student Performance Monitoring System</h1>
 
