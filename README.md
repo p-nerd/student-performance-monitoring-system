@@ -1,4 +1,4 @@
-# About
+# Student Performance Monitoring System
 
 A web-based Student Performance Monitoring System developed with raw PHP,
 designed to streamline academic performance tracking in educational institutions.  
@@ -21,12 +21,6 @@ generating insightful reports, and making data-driven decisions to improve educa
 
 The project showcases the ability to build applications using raw PHP
 while maintaining clean code architecture and implementing modern development practices.
-
-# Student Performance Monitoring System
-
-Student Performance Monitoring System with raw PHP. For details, check out the [project case study](https://developershihab.com/projects/student-performance-monitoring-system) on my website.
-
-The **Student Performance Monitoring System** is a web-based application built with raw PHP. It helps educators track students' academic performance through data collection, analysis, and visualization. This project was undertaken as part of an internship at [Systech Digital Limited](https://systechdigital.com)
 
 ## Features
 
